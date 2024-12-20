@@ -7,7 +7,7 @@ Daniela Koch: baqueta.dani@gmail.com
 
 Delan Ali: delan328@gmail.com
 
-Md. Injamul Haqueinjamul.abeg@gmail.com
+Md. Injamul Haque: injamul.abeg@gmail.com
 
 Nicolai Villas Østergaard: Nicolai.Villas.Oestergaard@gmail.com
 
