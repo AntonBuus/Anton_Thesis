@@ -4,11 +4,9 @@
 Anton Buus Hansen: antonbuushansen@gmail.com
 
 
-Note that this is a forked repo from a previous project I did in the fall of 2024. The reason for the fork is to reuse some of the visual material for this project, as well as some of the interactions.
+* Note that this is a forked repo from a previous project I did in the fall of 2024. The reason for the fork is to reuse some of the visual material for this project, as well as some of the interactions.
 
-In August 2022 the EU commission published Annex1, a set of guidelines and rules for the manufacturing of sterile medicinal products within EU countries. This project aims to help entry-level employees in the least critical clean rooms to enhance their knowledge about the new regulations learned through reading them. To do so, a Virtual Reality application utilizing gamification and adaptability was developed. This is the source code of the developed prototype.
-
-The project is made with Meta Quest2 in mind and cannot be played without it, though it might be forward compatible with Quest 3.
+The project is made with Meta Quest3s in mind and cannot be played without it, though it might be forward compatible with Quest 3.
 
 This project uses assets from the _Chemistry Lab Items Pack_ from the Unity Asset store:
 https://assetstore.unity.com/packages/3d/environments/chemistry-lab-items-pack-220212
