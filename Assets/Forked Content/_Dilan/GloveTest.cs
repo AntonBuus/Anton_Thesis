@@ -9,7 +9,7 @@ public class GloveTest : MonoBehaviour
 
     [SerializeField] System.Collections.Generic.List<UnityEngine.Material> Mat;
 
-    [SerializeField] string tag;
+    [SerializeField] string _tag;
 
     public void changeGlove()
     {
