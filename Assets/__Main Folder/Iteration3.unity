@@ -3163,6 +3163,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1138957583769095585, guid: 41db1b0a3bdf3e44eb2bfa0def58fe32, type: 3}
+      propertyPath: m_DefaultParameters.m_ApertureSize
+      value: 0.947
+      objectReference: {fileID: 0}
     - target: {fileID: 1607932636507831135, guid: 41db1b0a3bdf3e44eb2bfa0def58fe32, type: 3}
       propertyPath: m_TagString
       value: PlayerHand
