@@ -9,13 +9,18 @@ public class RegisterMicInput : MonoBehaviour
     // Stores the audio clip from microphone input
     private AudioClip micInput;
     // Audio source component for playing microphone input
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     // Sample rate constant set to CD quality
     private const int sampleRate = 44100;
     // Maximum recording duration in seconds
     private const int recordingLengthSeconds = 10;
     // Index of the currently selected microphone device
     [SerializeField] private int selectedDeviceIndex = 0;
+
+    // public enum PreferredMic { Oculus, Laptopmic, No_mic }
+    // [SerializeField] public PreferredMic preferredMic = PreferredMic.Laptopmic;
+    
+    
 
     // Called when the script instance is being loaded
     void Start()
@@ -27,6 +32,7 @@ public class RegisterMicInput : MonoBehaviour
         // Log all available microphone devices
         LogAvailableDevices();
         // Log current audio level
+        SelectMicrophoneDevice(selectedDeviceIndex);
         LogAudioLevel();
     }
 
@@ -37,6 +43,7 @@ public class RegisterMicInput : MonoBehaviour
         if (Microphone.IsRecording(Microphone.devices[selectedDeviceIndex]))
         {
             Debug.Log($"Recording from: {Microphone.devices[selectedDeviceIndex]}");
+            Debug.Log($"current audio level: {audioSource.volume}");
         }
     }
 
