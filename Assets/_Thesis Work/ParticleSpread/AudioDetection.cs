@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.XR.Oculus;
 using UnityEngine;
 
 public class AudioDetection : MonoBehaviour
@@ -10,11 +12,20 @@ public class AudioDetection : MonoBehaviour
     public enum PreferredMic { Oculus, Laptopmic, No_mic }
     [SerializeField] public PreferredMic preferredMic = PreferredMic.Laptopmic;
     
-    private int _mixIndex = 1;
+    private int _mixIndex = 0;
     void Start()
     {
+        if (preferredMic == PreferredMic.Oculus)
+        {
+            _mixIndex = 1;
+        } 
+        if (preferredMic == PreferredMic.Laptopmic)
+        {
+            _mixIndex = 0;
+        }
         MicrophoneToAudioClip();
         Debug.Log("audiosettings sample rate: " + AudioSettings.outputSampleRate);
+        
     }
 
     // Update is called once per frame
@@ -39,6 +50,7 @@ public class AudioDetection : MonoBehaviour
         // }
         string _microphoneName = Microphone.devices[_mixIndex];
         Debug.Log($"Selected microphone: {_microphoneName}");
+        Debug.Log("Microphone to select from: " + Microphone.devices.Length);
         _microphoneClip = Microphone.Start(_microphoneName, true, 20, AudioSettings.outputSampleRate);
     }
 

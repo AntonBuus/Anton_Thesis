@@ -7,6 +7,7 @@ TagManager:
   - ApprovedComponent
   - BrokenComponent
   - PlayerHand
+  - _facemask
   layers:
   - Default
   - TransparentFX
@@ -14,11 +15,11 @@ TagManager:
   - Interactable
   - Water
   - UI
-  - 
+  - Hide For Mirror
   - User
-  - 
-  - 
-  - 
+  - udf_ignore
+  - mouthparticle_ignore
+  - player_head
   - 
   - 
   - 

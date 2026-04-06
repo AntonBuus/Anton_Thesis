@@ -7,7 +7,7 @@ public class ParticleEmission : MonoBehaviour
      public AudioSource _audioSource;
     public ParticleSystem _particleSystem;
     public AudioDetection _audioDetectionScript;
-
+   
     public float _loudnessSensibility = 100f;
     public float _threshold = 0.1f;
     public float _emissionRate = 20f;
@@ -17,7 +17,9 @@ public class ParticleEmission : MonoBehaviour
     void Start()
     {
         _PS_emission = _particleSystem.emission;
-        _particleSystem.Play();
+        // _particleSystem.Play();
+        // _maskBehaviorScript = GameObject.Find("_Snap_Mask").GetComponent<MaskBehavior>();
+        
     }
     void Update()
     {
@@ -29,7 +31,14 @@ public class ParticleEmission : MonoBehaviour
             return;
 
         }
+        if (_particleSystem.isStopped)
+        {
+            _particleSystem.Play();
+            
+        }
         _PS_emission.rateOverTime = _emissionRate;
+        // _maskBehaviorScript.ToggleBacteria();
+
     }
 
 
