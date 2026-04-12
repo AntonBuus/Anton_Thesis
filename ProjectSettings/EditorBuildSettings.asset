@@ -6,8 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Forked Content/__Main Folder/Iteration3.unity
-    guid: cf25e11293a986b44ae22b86e10727a0
+    path: Assets/_Thesis Work/_Scenes/Menu.unity
+    guid: 84a6b05316aea96459ff7c4a7be6092f
+  - enabled: 1
+    path: Assets/_Thesis Work/_Scenes/Cleanroom.unity
+    guid: a66cbf38c1208c5439ed80042d15656f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c77a11bf2bab410498e0f036d87839e9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c3f51eaac27066e4ea61e655a876603b, type: 2}

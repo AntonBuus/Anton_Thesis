@@ -8,6 +8,7 @@ TagManager:
   - BrokenComponent
   - PlayerHand
   - _facemask
+  - _lid
   layers:
   - Default
   - TransparentFX

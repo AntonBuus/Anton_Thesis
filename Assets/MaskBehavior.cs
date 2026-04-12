@@ -26,7 +26,6 @@ public class MaskBehavior : MonoBehaviour
         // foreach (Transform child in wornMask.transform)
         // {
         //     Debug.Log("Child name: " + child.name);
-
         // }
         if (isWearingMask)
         {
