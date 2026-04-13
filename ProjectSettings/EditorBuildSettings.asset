@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/_Thesis Work/_Scenes/Menu.unity
     guid: 84a6b05316aea96459ff7c4a7be6092f
   - enabled: 1
+    path: Assets/_Thesis Work/_Scenes/Speech.unity
+    guid: 7c4b7467d94f656459fa1068c2a10b39
+  - enabled: 1
     path: Assets/_Thesis Work/_Scenes/Cleanroom.unity
     guid: a66cbf38c1208c5439ed80042d15656f
   m_configObjects:

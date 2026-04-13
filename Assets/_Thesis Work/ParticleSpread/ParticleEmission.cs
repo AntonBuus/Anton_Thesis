@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// credit to Valem for the audio detection code: https://www.youtube.com/watch?v=dzD0qP8viLw
 public class ParticleEmission : MonoBehaviour
 {
      public AudioSource _audioSource;
@@ -10,7 +11,7 @@ public class ParticleEmission : MonoBehaviour
    
     public float _loudnessSensibility = 100f;
     public float _threshold = 0.1f;
-    public float _emissionRate = 20f;
+    public float _emissionRate = 5f;
 
     public ParticleSystem.EmissionModule _PS_emission;
 

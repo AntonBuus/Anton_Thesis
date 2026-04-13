@@ -445,9 +445,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Open Clipboard",
+                    "name": "LeftControllerXbutton",
                     "type": "Button",
                     "id": "c6d4fc6a-bcda-44c0-89b8-08becaf98401",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftControllerYbutton",
+                    "type": "Button",
+                    "id": "ea2bd72b-7e77-4d45-9579-38acbe32f999",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LeftControllerMenuButton",
+                    "type": "Button",
+                    "id": "b594bbde-c06a-4d4d-bacb-549e3a839a19",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -693,7 +711,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Open Clipboard",
+                    "action": "LeftControllerXbutton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fb90ef8d-93cd-4b66-bd66-13c0a85ece8e",
+                    "path": "<XRController>{LeftHand}/secondaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftControllerYbutton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "001b10b7-8dfa-4c97-9c09-ca8831f9d110",
+                    "path": "<XRController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Generic XR Controller",
+                    "action": "LeftControllerMenuButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

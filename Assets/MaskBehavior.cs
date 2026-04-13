@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+// using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class MaskBehavior : MonoBehaviour
 {
@@ -13,10 +15,22 @@ public class MaskBehavior : MonoBehaviour
     
     SocketTagFunc _socketTagFunc;
 
+    TutorialSteps _speechTutorialStepsScript;
+
     // AudioDetection _audioDetection;
     void Start()
     {
         _socketTagFunc = GetComponent<SocketTagFunc>();
+        // Debug.Log(UnitySceneManager.GetActiveScene().name);
+        if (GameObject.Find("TutorialSteps") != null)
+        {
+            _speechTutorialStepsScript = GameObject.Find("TutorialSteps").GetComponent<TutorialSteps>();
+        }
+        else
+        {
+            Debug.Log("TutorialComponent not in this scene FYI");
+        }
+        // _speechTutorialStepsScript = GameObject.Find("TutorialSteps").GetComponent<TutorialSteps>();
         // _audioDetection = GameObject.Find("Micinput2").GetComponent<AudioDetection>();
     }
     public void ToggleBacteria()
@@ -36,6 +50,10 @@ public class MaskBehavior : MonoBehaviour
             {
                 wornMask.transform.GetChild(2).gameObject.SetActive(true);
                 Debug.Log("Bacteria is active");
+                if (_speechTutorialStepsScript != null)
+                {
+                    _speechTutorialStepsScript._successfullyContaminatedMask = true;
+                }
             }
         }
     }

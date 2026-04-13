@@ -350,9 +350,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 0}
   _minScale: {x: 0.005, y: 0.0006, z: 0.0005}
-  _maxScale: {x: 0.005, y: 0.003, z: 0.0005}
+  _maxScale: {x: 0.005, y: 0.006, z: 0.0005}
   _audioDetectionScript: {fileID: 0}
   _DebugLoudness: 0
   _loudnessSensibility: 100
   _threshold: 0.1
   _maskBehaviorScript: {fileID: 0}
+  _speechTutorialStepsScript: {fileID: 0}

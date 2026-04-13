@@ -8,6 +8,8 @@ public class TutorialManager : MonoBehaviour
     private int popUpIndex;
     public GameObject spawner;
 
+    private bool step1done = false;
+
     void Update()
     {
         for (int i = 0; i < popUps.Length; i++)
@@ -21,26 +23,45 @@ public class TutorialManager : MonoBehaviour
                 popUps[i].SetActive(false);
             }
         }
+        
+    }
+
+    public void Step1()
+    {
         if(popUpIndex ==0)
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
-            {
-                popUpIndex++;
-            }
+            popUps[0].SetActive(false);
+            popUpIndex++;
+            popUps[1].SetActive(true);
         }
-        else if(popUpIndex == 1)
+    }
+    public void Step2()
+    {
+        if (popUpIndex == 1)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                popUpIndex++;
-            }
+            popUpIndex++;
         }
-        else if(popUpIndex == 2)
+    }
+    public void Step3()
+    {
+        if (popUpIndex == 2)
         {
-            if (spawner.transform.childCount > 0)
-            {
-                popUpIndex++;
-            }
+            popUpIndex++;
+        }
+    }
+    public void Step4()
+    {
+        if (popUpIndex == 3)
+        {
+            popUpIndex++;
+        }
+    }
+    public void Step5()
+    {
+        if (popUpIndex == 4)
+        {
+            popUpIndex++;
+            spawner.SetActive(true);
         }
     }
 }
