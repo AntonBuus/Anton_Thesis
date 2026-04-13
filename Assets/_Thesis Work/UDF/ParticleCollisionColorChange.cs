@@ -7,6 +7,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
 {
     private ParticleSystem ps;
     private ParticleSystem.Particle[] particles;
+    [SerializeField] private List<int> collidedParticleIndices = new List<int>();
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
 
         List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
         int eventCount = ps.GetCollisionEvents(other, collisionEvents);
+        collidedParticleIndices.Clear();
 
         for (int i = 0; i < eventCount; i++)
         {
@@ -45,12 +47,16 @@ public class ParticleCollisionColorChange : MonoBehaviour
 
             if (closestIndex != -1)
             {
-                // Change particle color to yellow
-                particles[closestIndex].startColor = Color.yellow;
-
-                // Debug "ID" (index acts as pseudo-ID)
-                Debug.Log($"Particle hit! Index (ID): {closestIndex} collided with {other.name}");
+                if (!collidedParticleIndices.Contains(closestIndex))
+                    collidedParticleIndices.Add(closestIndex);
             }
+        }
+
+        for (int i = 0; i < collidedParticleIndices.Count; i++)
+        {
+            int particleIndex = collidedParticleIndices[i];
+            particles[particleIndex].startColor = Color.yellow;
+            Debug.Log($"Particle hit! Index (ID): {particleIndex} collided with {other.name}");
         }
 
         ps.SetParticles(particles, numParticlesAlive);
