@@ -54,9 +54,15 @@ public class ParticleCollisionColorChange : MonoBehaviour
 
         for (int i = 0; i < collidedParticleIndices.Count; i++)
         {
+            // if (other.name != "Product")
+            // {
+            //     continue;
+            // }
             int particleIndex = collidedParticleIndices[i];
+            Debug.Log($"Particle Color Before: {particles[particleIndex].startColor}");
             particles[particleIndex].startColor = Color.yellow;
             Debug.Log($"Particle hit! Index (ID): {particleIndex} collided with {other.name}");
+            Debug.Log($"Particle Color After: {particles[particleIndex].startColor}");
         }
 
         ps.SetParticles(particles, numParticlesAlive);

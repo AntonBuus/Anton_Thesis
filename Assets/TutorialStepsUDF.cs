@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
-public class TutorialSteps : MonoBehaviour
+public class TutorialStepsUDF : MonoBehaviour
 {
     private int _stepindex;
     
@@ -17,9 +15,10 @@ public class TutorialSteps : MonoBehaviour
     public GameObject _endTutorialButton;
 
     [Header("Tutorial step variables")]
-    public bool _hasSpoken = false;
-    public bool _successfullyContaminatedMask = false;
-    public bool _hasGrabbedNewMask = false;
+    //Change these
+    private bool _requirement1Met = false;
+    private bool _requirement2Met = false;
+    private bool _requirement3Met = false;
 
 
     public GameObject movingCanvas;
@@ -39,30 +38,30 @@ public class TutorialSteps : MonoBehaviour
     public void Start()
     {
         _title.text = "Welcome";
-        _text.text = "This module will introduce the concept of contamination particle from speech";
+        _text.text = "This module will introduce the concept of uni directional flow in cleanrooms";
         Debug.Log("stepindex: " + _stepindex);
         _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
     }
 
-    public void PlayerHasSpoken()
+    public void Requirement1()
     {
         // Debug.Log("PlayerHasSpoken Called");
-        if(_stepindex == 4 && !_hasSpoken)
+        if(_stepindex == 4 && !_requirement1Met)
         {
-            _hasSpoken = true;
+            _requirement1Met = true;
             Debug.Log("Player has spoken correctly");
             //Should i call StepNext here?
-                // StepNext();
+                StepNext();
         }
     }
-    public void PlayerHasGrabbedNewMask()
+    public void Requirement2()
     {
         // Debug.Log("PlayerHasGrabbedNewMask Called");
-        if(_stepindex == 8 && !_hasGrabbedNewMask)
+        if(_stepindex == 8 && !_requirement2Met)
         {
-            _hasGrabbedNewMask = true;
+            _requirement2Met = true;
             Debug.Log("Player has grabbed new mask correctly");
             //Should i call StepNext here?
                 // StepNext();
@@ -73,7 +72,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex == -1)
         {
             _title.text = "Welcome";
-            _text.text = "This module will introduce the concept of contamination particle from speech.";
+            _text.text = "This module will introduce the concept of contamination particle from speech";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -83,7 +82,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==0)
         {
             _title.text = " Particles";
-            _text.text = "As a general rule, speech should be kept to a minimum when operating in cleanrooms.";
+            _text.text = "as a general rule, speech should be kept to a minimum when operating in cleanrooms";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -93,7 +92,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==1)
         {
             _title.text = "Particles";
-            _text.text = "The reason for this is that particles are spread from the mouth during speech, which can contaminate the product.";
+            _text.text = "The reason for this is that particles are spread from the mouth during speech, which can contaminate the product";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
@@ -101,7 +100,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==2)
         {
             _title.text = "Particles";
-            _text.text = "The amount of particles spread depends on the volume of speech, so it is best practiceto keep it to a minimum";
+            _text.text = "The amount of particles spread depends on the volume of speech, so it is best to keep it to a minimum";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
@@ -109,8 +108,8 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==3)
         {
             _title.text = "Try it";
-            _text.text = "Try to speak now, notice how particles are emitted from your mouth upon speech."+
-            " You can also look in the mirror to your right and see the particles you spread.";
+            _text.text = "Try to speak now, notice how particles are emitted from your mouth upon speech"+
+            " You can also look in the mirror to your right and see the particles you spread";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -118,7 +117,7 @@ public class TutorialSteps : MonoBehaviour
 
             return;
         }
-        if(_stepindex ==4 && _hasSpoken)
+        if(_stepindex ==4 && _requirement1Met)
         {
             _title.text = "Well done";
             _text.text = "Now look at the table, notice there is a mask that you can grab, try to grab it and put it on";
@@ -137,7 +136,7 @@ public class TutorialSteps : MonoBehaviour
 
             return;
         }
-        if(_stepindex ==6 && _successfullyContaminatedMask)
+        if(_stepindex ==6 && _requirement2Met)
         {
             _title.text = "Mask Contamination";
             _text.text = "Speaking will still contaminate the mask, making it less effective, so speaking should still be kept to a minimum even when wearing a mask";
@@ -159,11 +158,11 @@ public class TutorialSteps : MonoBehaviour
             // _nextButton.SetActive(false);
             return;
         }
-        if(_stepindex ==8 && _hasGrabbedNewMask)
+        if(_stepindex ==8 && _requirement3Met)
         {
             _title.text = "Great";
             _text.text = "You now know how contamination can spead even from speaking, and you know how to change your mask."+
-            " When on the production line, make sure to change your mask if you notice that it is contaminated.";
+            " When on the production line, make sure to change you mask if you notice that it is contaminated.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             //button should say: Understood

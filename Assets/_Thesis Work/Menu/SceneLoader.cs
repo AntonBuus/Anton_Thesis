@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class SceneManager : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
     [Header("=== Scene Settings ===")]
 
@@ -24,4 +24,12 @@ public class SceneManager : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeSceneLoad);
         UnitySceneManager.LoadScene(sceneName);
     }
+    public void ReloadCurrentScene()
+    {
+        Scene current = SceneManager.GetActiveScene();
+        StartCoroutine(LoadSceneAfterDelay(current.name));
+    }
+    
+
+
 }

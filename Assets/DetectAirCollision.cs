@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class DetectAirCollision : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider collision)
     {
-        // Check for yellow particle
-        if (other.CompareTag("Yellow"))
+        ParticleSystem particleSystem = collision.GetComponent<ParticleSystem>();
+        if (particleSystem != null)
         {
-            Debug.Log("Yellow particle hit detected!");
+            ParticleSystem.MainModule main = particleSystem.main;
+            if (main.startColor.color == Color.yellow)
+            {
+                Debug.Log("Yellow particle hit detected!");
+            }
+            if (main.startColor.color == Color.green)
+            {
+                Debug.Log("Green particle hit detected!");
+            }
+
         }
-        
-        // Check for green particle
-        if (other.CompareTag("Green"))
-        {
-            Debug.Log("Green particle hit detected!");
-        }
+
     }
 }
