@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
+// using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -83,7 +83,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==0)
         {
             _title.text = " Particles";
-            _text.text = "As a general rule, speech should be kept to a minimum when operating in cleanrooms.";
+            _text.text = "As a rule, speech should be kept to a minimum when operating in cleanrooms.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -93,7 +93,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==1)
         {
             _title.text = "Particles";
-            _text.text = "The reason for this is that particles are spread from the mouth during speech, which can contaminate the product.";
+            _text.text = "The reason for this is that particles are spread during speech, which can contaminate critical surfaces.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
@@ -101,7 +101,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==2)
         {
             _title.text = "Particles";
-            _text.text = "The amount of particles spread depends on the volume of speech, so it is best practiceto keep it to a minimum";
+            _text.text = "The amount of particles spread depends on the volume of speech, so it is best practice to keep it to a minimum.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
@@ -109,8 +109,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==3)
         {
             _title.text = "Try it";
-            _text.text = "Try to speak now, notice how particles are emitted from your mouth upon speech."+
-            " You can also look in the mirror to your right and see the particles you spread.";
+            _text.text = "Try to speak now, notice how particles are emitted from your mouth upon speech. You can also look in the mirror to your right and see the particles you spread.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -121,7 +120,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==4 && _hasSpoken)
         {
             _title.text = "Well done";
-            _text.text = "Now look at the table, notice there is a mask that you can grab, try to grab it and put it on";
+            _text.text = "Now look at the table, notice there is a mask that you can grab, try to grab it and put it on.";
             _stepindex++; 
             Debug.Log("stepindex: " + _stepindex);
             return;
@@ -129,8 +128,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==5 && _maskBehaviorScript.isWearingMask)
         {
             _title.text = "Masks";
-            _text.text = "Masks can help reduce the amount of particles emitted from the mouth, so it is best to wear one when operating in cleanrooms. "+ 
-            "Notice how there are now fewer bacteria when you speak?";
+           _text.text = "Masks can help reduce the amount of particles emitted from the mouth, which is why it is required to wear one when operating in cleanrooms. Notice how there are now fewer bacteria when you speak?";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             _buttonText.text = "Next";
@@ -151,8 +149,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==7) //&& _hasGrabbedNewMask 
         {
             _title.text = "New Mask";
-            _text.text = "Grab a new mask from your mask bag, you can find it by pressing X on your left controller,"+
-            " pull out a new one with your right hand put that on";
+           _text.text = "Grab a new mask from your mask bag, you can find it by pressing X on your left controller, pull out a new one with your right hand and put that on.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             //button should say: Understood
@@ -162,8 +159,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==8 && _hasGrabbedNewMask)
         {
             _title.text = "Great";
-            _text.text = "You now know how contamination can spead even from speaking, and you know how to change your mask."+
-            " When on the production line, make sure to change your mask if you notice that it is contaminated.";
+            _text.text = "You now know how contamination can spread even from speaking, and you know how to change your mask. When on the production line, make sure to change your mask if you notice that it is contaminated. Change the mask if it is wet, as it is an indicator of contamination.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             //button should say: Understood
@@ -174,7 +170,7 @@ public class TutorialSteps : MonoBehaviour
         if(_stepindex ==9 )
         {
             _title.text = "End of tutorial";
-            _text.text = "You have completed the tutorial, you can now proceed to the next module";
+            _text.text = "You have completed the tutorial, you can now proceed to the next module.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             //button should say: End Tutorial

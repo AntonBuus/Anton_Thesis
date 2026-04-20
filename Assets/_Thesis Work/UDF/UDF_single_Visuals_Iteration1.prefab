@@ -3803,14 +3803,14 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 2
-    inside: 1
+    inside: 0
     outside: 0
-    enter: 0
+    enter: 2
     exit: 0
     colliderQueryMode: 0
-    radiusScale: 1
+    radiusScale: 0.15
     primitives: []
   SubModule:
     serializedVersion: 2
@@ -4771,6 +4771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7356ead0dc0d92145bcf9cf24a7edeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collidedParticleIndices: 
 --- !u!199 &5387366867157848114
 ParticleSystemRenderer:
   serializedVersion: 6

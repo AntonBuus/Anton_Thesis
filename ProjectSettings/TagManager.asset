@@ -9,6 +9,7 @@ TagManager:
   - PlayerHand
   - _facemask
   - _lid
+  - _product
   layers:
   - Default
   - TransparentFX

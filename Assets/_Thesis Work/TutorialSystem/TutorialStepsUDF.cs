@@ -7,12 +7,18 @@ public class TutorialStepsUDF : MonoBehaviour
 {
     private int _stepindex;
     
+    [Header("UI Elements")]
     public TextMeshProUGUI _title;
     public TextMeshProUGUI _text;
     public TextMeshProUGUI _buttonText;
     public GameObject _nextButton;
     public GameObject _previousButton;
     public GameObject _endTutorialButton;
+    public GameObject _image_goodPractice;
+
+    [Header("Toggleable Props")]
+    public GameObject _UDF_System;
+    public GameObject _products;
 
     [Header("Tutorial step variables")]
     //Change these
@@ -38,7 +44,7 @@ public class TutorialStepsUDF : MonoBehaviour
     public void Start()
     {
         _title.text = "Welcome";
-        _text.text = "This module will introduce the concept of uni directional flow in cleanrooms";
+        _text.text = "This module will introduce the concept of contamination particle from speech.";
         Debug.Log("stepindex: " + _stepindex);
         _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
@@ -51,7 +57,7 @@ public class TutorialStepsUDF : MonoBehaviour
         if(_stepindex == 4 && !_requirement1Met)
         {
             _requirement1Met = true;
-            Debug.Log("Player has spoken correctly");
+            // Debug.Log("Player has spoken correctly");
             //Should i call StepNext here?
                 StepNext();
         }
@@ -62,7 +68,7 @@ public class TutorialStepsUDF : MonoBehaviour
         if(_stepindex == 8 && !_requirement2Met)
         {
             _requirement2Met = true;
-            Debug.Log("Player has grabbed new mask correctly");
+            // Debug.Log("Player has grabbed new mask correctly");
             //Should i call StepNext here?
                 // StepNext();
         }
@@ -72,7 +78,7 @@ public class TutorialStepsUDF : MonoBehaviour
         if(_stepindex == -1)
         {
             _title.text = "Welcome";
-            _text.text = "This module will introduce the concept of contamination particle from speech";
+            _text.text = "This module will introduce the concept of contamination particle from speech.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -81,8 +87,8 @@ public class TutorialStepsUDF : MonoBehaviour
         }
         if(_stepindex ==0)
         {
-            _title.text = " Particles";
-            _text.text = "as a general rule, speech should be kept to a minimum when operating in cleanrooms";
+            _title.text = " Clean Air";
+            _text.text = "Clean air in cleanrooms is achieved through the use of HEPA filters and uni directional flow, which helps to remove particles from the air and prevent contamination.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 
@@ -91,78 +97,87 @@ public class TutorialStepsUDF : MonoBehaviour
         }
         if(_stepindex ==1)
         {
-            _title.text = "Particles";
-            _text.text = "The reason for this is that particles are spread from the mouth during speech, which can contaminate the product";
+            _title.text = "First Air";
+            _text.text = "This clean air is known as first air, and will be degraded to second air once it comes into contact with a person or object, which can contaminate the air with particles.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
         }
         if(_stepindex ==2)
         {
-            _title.text = "Particles";
-            _text.text = "The amount of particles spread depends on the volume of speech, so it is best to keep it to a minimum";
+            _title.text = "Second Air";
+            _text.text = "Second air can manifest as turbulence and carry particles to critical parts, which can be contaminated.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             return;
         }
         if(_stepindex ==3)
         {
-            _title.text = "Try it";
-            _text.text = "Try to speak now, notice how particles are emitted from your mouth upon speech"+
-            " You can also look in the mirror to your right and see the particles you spread";
+            _title.text = "Air visualization";
+            _text.text = "We have visualized the different types of air under the HEPA filter to your left: Green air indicates first air. If you or an object comes into contact with the first air, it will be degraded to second air, which is indicated by changing the streams to yellow.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
+            //Show picture here
+            _UDF_System.SetActive(true);
 
-            // _nextButton.SetActive(false);
 
             return;
         }
-        if(_stepindex ==4 && _requirement1Met)
+        if(_stepindex ==4 ) //&& _requirement1Met
         {
-            _title.text = "Well done";
-            _text.text = "Now look at the table, notice there is a mask that you can grab, try to grab it and put it on";
+            _title.text = "Exercise";
+            _text.text = "To get a feel for how the air can act in a cleanroom, try to put your hand in the air stream and notice how it is moved and degraded to second air.";
             _stepindex++; 
             Debug.Log("stepindex: " + _stepindex);
             return;
         }
-        if(_stepindex ==5 && _maskBehaviorScript.isWearingMask)
+        if(_stepindex ==5 ) //&& _requirement2Met
         {
-            _title.text = "Masks";
-            _text.text = "Masks can help reduce the amount of particles emitted from the mouth, so it is best to wear one when operating in cleanrooms. "+ 
-            "Notice how there are now fewer bacteria when you speak?";
+            _title.text = "Great";
+            _text.text = "Now pick up a lid on the counter and do the same. See if you can steer the air by tilting the lid in any direction.";
+            _stepindex++; 
+            Debug.Log("stepindex: " + _stepindex);
+            return;
+        }
+        if(_stepindex ==6)
+        {
+            _title.text = "Product";
+            _text.text = "The petridish will be located under the HEPA filters in first air. Your task is to place a lid over the product without contaminating it so that the product can be safely transported to the next stage of production.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             _buttonText.text = "Next";
+            _image_goodPractice.SetActive(false);
 
             return;
         }
-        if(_stepindex ==6 && _requirement2Met)
+        if(_stepindex ==7)
         {
-            _title.text = "Mask Contamination";
-            _text.text = "Speaking will still contaminate the mask, making it less effective, so speaking should still be kept to a minimum even when wearing a mask";
+            _title.text = "Good practice";
+            _text.text = "A good practice when placing lids is to tilt the lid towards yourself so the angle allows air to flow away from the product.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
-
+            _image_goodPractice.SetActive(true);
             _nextButton.SetActive(true);
             _buttonText.text = "Understood";
             return;
         }
-        if(_stepindex ==7) //&& _hasGrabbedNewMask 
+        if(_stepindex ==8) //&& _hasGrabbedNewMask 
         {
-            _title.text = "New Mask";
-            _text.text = "Grab a new mask from your mask bag, you can find it by pressing X on your left controller,"+
-            " pull out a new one with your right hand put that on";
+            _title.text = "Exercise";
+            _text.text = "Place the lids on the 3 respective products, it's okay if one of them gets contaminated as this is just training. But you will be judged during the exam later on.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
+            _image_goodPractice.SetActive(false);
+            _buttonText.text = "Next";
+            _products.SetActive(true);
             //button should say: Understood
             // _nextButton.SetActive(false);
             return;
         }
-        if(_stepindex ==8 && _requirement3Met)
+        if(_stepindex ==9 ) // && _requirement3Met
         {
             _title.text = "Great";
-            _text.text = "You now know how contamination can spead even from speaking, and you know how to change your mask."+
-            " When on the production line, make sure to change you mask if you notice that it is contaminated.";
+            _text.text = "You now know the basic principles of uni directional flow, and you have practiced how to place a lid on a product without contaminating it.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             //button should say: Understood
@@ -170,7 +185,7 @@ public class TutorialStepsUDF : MonoBehaviour
             _buttonText.text = "Next";
             return;
         }
-        if(_stepindex ==9 )
+        if(_stepindex ==10 )
         {
             _title.text = "End of tutorial";
             _text.text = "You have completed the tutorial, you can now proceed to the next module";
