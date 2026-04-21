@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
 
 public class EvaluationModuleSteps : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class EvaluationModuleSteps : MonoBehaviour
     public GameObject _previousButton;
     public GameObject _endTutorialButton;
 
+    [Header("Tracking Contamination")]
     public TextMeshProUGUI _dynamicText; 
+    TrackContamination _trackContaminationScript;
+
     // public GameObject _image_goodPractice;
 
     [Header("Toggleable Props")]
@@ -26,7 +30,8 @@ public class EvaluationModuleSteps : MonoBehaviour
     //Change these
     private bool _requirement1Met = false;
     private bool _requirement2Met = false;
-    private bool _requirement3Met = false;
+    private bool _taskCompleted = false;
+    private bool _showingResults = false;
 
     [Header("Core functionality variables")]
     public GameObject movingCanvas;
@@ -41,6 +46,11 @@ public class EvaluationModuleSteps : MonoBehaviour
     {
         movingCanvas.transform.LookAt(new Vector3(playerHead.position.x, movingCanvas.transform.position.y, playerHead.position.z));
         movingCanvas.transform.forward *= -1;
+
+        if (_dynamicText.gameObject.activeSelf)
+        {
+            DocumentProgressWithText();
+        }
     }
     
     public void Start()
@@ -51,6 +61,7 @@ public class EvaluationModuleSteps : MonoBehaviour
         _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
+        _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
     }
 
     public void Requirement1()
@@ -78,13 +89,26 @@ public class EvaluationModuleSteps : MonoBehaviour
 
     public void DocumentProgressWithText()
     {
-        if(_stepindex == 4)
+        if(_stepindex == 5)
         {
-            // _dynamicText.text = "Lids placed on petridishes: " + _lidsPlacedTotal + "/"+ _dishesTotalAmount;
+            _dynamicText.text = "Lids placed on petridishes: " + _trackContaminationScript._lidsPlacedTotal + "/"+ _trackContaminationScript._dishesTotalAmount;
+            if (_trackContaminationScript._lidsPlacedTotal == _trackContaminationScript._dishesTotalAmount)
+            {   
+                _taskCompleted = true;
+                StepNext();
+            }
         }
-        if(_stepindex == 8)
+        if(_stepindex == 6)
         {
-            _dynamicText.text = "Requirement 2 completed: Player has grabbed new mask";
+            if(_showingResults == false && _taskCompleted)
+            {
+                _showingResults = true;
+                int SuccesCalculation = _trackContaminationScript._dishesTotalAmount-_trackContaminationScript._contaminatedDishesAmount;
+                _dynamicText.text = "Succesfull placements: " + SuccesCalculation + "/" + _trackContaminationScript._dishesTotalAmount;
+                Debug.Log("final results shown");
+            }
+
+            
         }
     }
     public void StepNext()
@@ -142,9 +166,10 @@ public class EvaluationModuleSteps : MonoBehaviour
                 break;
 
             case 5: //&& _requirement2Met
-                _title.text = "Great";
-                _text.text = "Now pick up a lid on the counter and do the same. See if you can steer the air by tilting the lid in any direction.";
+                _title.text = "Finished";
+                _text.text = "You have placed the lids";
                 _stepindex++;
+                
                 Debug.Log("stepindex: " + _stepindex);
                 break;
 
@@ -155,50 +180,6 @@ public class EvaluationModuleSteps : MonoBehaviour
                 Debug.Log("stepindex: " + _stepindex);
                 _buttonText.text = "Next";
                 // _image_goodPractice.SetActive(false);
-                break;
-
-            case 7:
-                _title.text = "Good practice";
-                _text.text = "A good practice when placing lids is to tilt the lid towards yourself so the angle allows air to flow away from the product.";
-                _stepindex++;
-                Debug.Log("stepindex: " + _stepindex);
-                // _image_goodPractice.SetActive(true);
-                _nextButton.SetActive(true);
-                _buttonText.text = "Understood";
-                break;
-
-            case 8: //&& _hasGrabbedNewMask
-                _title.text = "Exercise";
-                _text.text = "Place the lids on the 3 respective products, it's okay if one of them gets contaminated as this is just training. But you will be judged during the exam later on.";
-                _stepindex++;
-                Debug.Log("stepindex: " + _stepindex);
-                // _image_goodPractice.SetActive(false);
-                _buttonText.text = "Next";
-                // _products.SetActive(true);
-                //button should say: Understood
-                // _nextButton.SetActive(false);
-                break;
-
-            case 9: // && _requirement3Met
-                _title.text = "Great";
-                _text.text = "You now know the basic principles of uni directional flow, and you have practiced how to place a lid on a product without contaminating it.";
-                _stepindex++;
-                Debug.Log("stepindex: " + _stepindex);
-                //button should say: Understood
-                _nextButton.SetActive(true);
-                _buttonText.text = "Next";
-                break;
-
-            case 10:
-                _title.text = "End of tutorial";
-                _text.text = "You have completed the tutorial, you can now proceed to the next module";
-                _stepindex++;
-                Debug.Log("stepindex: " + _stepindex);
-                //button should say: End Tutorial
-                _previousButton.SetActive(false);
-                _nextButton.SetActive(false);
-                _endTutorialButton.SetActive(true);
-                // _buttonText.text = "End Tutorial";
                 break;
 
             default:

@@ -5203,6 +5203,7 @@ GameObject:
   - component: {fileID: 535018800}
   - component: {fileID: 535018799}
   - component: {fileID: 535018802}
+  - component: {fileID: 535018803}
   m_Layer: 0
   m_Name: Product
   m_TagString: Untagged
@@ -5308,6 +5309,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3199c6e2a91368f479736f265fae48d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &535018803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 535018797}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3ec47cf91b2fb4ca186cc367e8be05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &557080613
@@ -15312,13 +15325,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552741285}
+  - component: {fileID: 1552741286}
   m_Layer: 0
-  m_Name: Product dishes
+  m_Name: Product_dishes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1552741285
 Transform:
   m_ObjectHideFlags: 0
@@ -15337,6 +15351,21 @@ Transform:
   - {fileID: 1051219997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552741286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552741284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 495c9712e96e1ad4ea72dfa938c387d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dishesTotalAmount: 0
+  _contaminatedDishesAmount: 0
+  _lidsPlacedTotal: 0
 --- !u!1 &1555599914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4301680130870237333, guid: bb4f20b8931084740a5312111270d73c, type: 3}
@@ -16025,7 +16054,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1552741286}
+        m_TargetAssemblyTypeName: TrackContamination, Assembly-CSharp
+        m_MethodName: IncrementLidsPlaced
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -20008,7 +20049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2081741809
 Transform:
   m_ObjectHideFlags: 0
@@ -24291,6 +24332,7 @@ MonoBehaviour:
   _nextButton: {fileID: 8045326037077195635}
   _previousButton: {fileID: 8504776279314025764}
   _endTutorialButton: {fileID: 5419835339163228799}
+  _dynamicText: {fileID: 0}
   movingCanvas: {fileID: 4372880645821269597}
   playerHead: {fileID: 860473240}
 --- !u!224 &7836400467871192807

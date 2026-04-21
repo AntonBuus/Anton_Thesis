@@ -14,10 +14,16 @@ public class ParticleCollisionColorChange : MonoBehaviour
     public static bool product1Contaminated = false;
     public static bool product2Contaminated = false;
     public static bool product3Contaminated = false;
+    public static bool product4Contaminated = false;
+    public static bool product5Contaminated = false;
+    public static bool product6Contaminated = false;
+    
 
+    TrackContamination _trackContaminationScript;
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
     }
 
     void OnParticleCollision(GameObject other)
@@ -83,19 +89,62 @@ public class ParticleCollisionColorChange : MonoBehaviour
                         product1Contaminated = true;
                         Debug.Log("proudct 1 is contaminated");
                         other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
                     }
                     if(!product2Contaminated && other.name == "Petridish_2")
                     {
                         product2Contaminated = true;
                         Debug.Log("proudct 2 is contaminated");
                         other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
                     }
                     if(!product3Contaminated && other.name == "Petridish_3")
                     {
                         product3Contaminated = true;
                         Debug.Log("proudct 3 is contaminated");
                         other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
                     }
+                    if(!product4Contaminated && other.name == "Petridish_4")
+                    {
+                        product4Contaminated = true;
+                        Debug.Log("proudct 4 is contaminated");
+                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
+                    }
+                    if(!product5Contaminated && other.name == "Petridish_5")
+                    {
+                        product5Contaminated = true;
+                        Debug.Log("proudct 5 is contaminated");
+                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
+                    }
+                    if(!product6Contaminated && other.name == "Petridish_6")
+                    {
+                        product6Contaminated = true;
+                        Debug.Log("proudct 6 is contaminated");
+                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        if (_trackContaminationScript != null)
+                        {
+                            _trackContaminationScript._contaminatedDishesAmount++;
+                        }
+                    }
+
                 }
             }   
 
