@@ -130,7 +130,7 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);
 
-                _previousButton.SetActive(true);
+                // _previousButton.SetActive(true);
                 break;
 
             case 1:
@@ -160,6 +160,7 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _title.text = "Go!";
                 _text.text = "Put lids on the petridishes. Don't speak and change your mask if relevant.";
                 _dynamicText.gameObject.SetActive(true);
+                _nextButton.SetActive(false);
 
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);
@@ -169,6 +170,7 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _title.text = "Finished";
                 _text.text = "You have placed the lids";
                 _stepindex++;
+                _nextButton.SetActive(true); 
                 
                 Debug.Log("stepindex: " + _stepindex);
                 break;
