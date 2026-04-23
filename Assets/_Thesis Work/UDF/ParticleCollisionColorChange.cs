@@ -23,8 +23,25 @@ public class ParticleCollisionColorChange : MonoBehaviour
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
-        _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+        // if scenename is "EvaluationModule_Scene", then find the TrackContamination script
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "EvaluationModule")
+        {
+            _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+            Debug.Log("TrackContamination script found and assigned in ParticleCollisionColorChange.");
+        }
+        //restart product contamination status
+        product1Contaminated = false;
+        product2Contaminated = false;
+        product3Contaminated = false;
+        product4Contaminated = false;
+        product5Contaminated = false;
+        product6Contaminated = false;
+        
     }
+
+    
+        
+
 
     void OnParticleCollision(GameObject other)
     {

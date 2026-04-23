@@ -15,6 +15,7 @@ public class LogRotation : MonoBehaviour
     public string sessionName = "Session";
  
     private string csvFilePath;
+    private bool _hasSavedData;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class LogRotation : MonoBehaviour
 
     private void Start()
     {
+        sessionName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         string timeStamp = System.DateTime.Now.ToString("MMM-dd-HH-mm");
         string baseFileName = $"{sessionName}{gameObject.name}_{timeStamp}";
 
@@ -53,8 +55,16 @@ public class LogRotation : MonoBehaviour
         SaveData();
     }
 
+    // Save when this object is disabled (e.g. scene unload/change).
+    private void OnDisable()
+    {
+        SaveData();
+    }
+
     public void SaveData()
     {
+        if (_hasSavedData) return;
+        _hasSavedData = true;
         SaveDataToCSV();
     }
 

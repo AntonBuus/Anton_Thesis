@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/_Thesis Work/_Scenes/Speech.unity
     guid: 7c4b7467d94f656459fa1068c2a10b39
   - enabled: 1
-    path: Assets/_Thesis Work/_Scenes/Cleanroom.unity
-    guid: a66cbf38c1208c5439ed80042d15656f
-  - enabled: 1
     path: Assets/_Thesis Work/_Scenes/UDF.unity
     guid: 201466e78e561ee4a8cd24b9ab270ed8
+  - enabled: 1
+    path: Assets/_Thesis Work/_Scenes/EvaluationModule.unity
+    guid: 4b7c4c995efe1bc4d8c58b8e418b2366
+  - enabled: 1
+    path: Assets/_Thesis Work/_Scenes/Cleanroom.unity
+    guid: a66cbf38c1208c5439ed80042d15656f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: c77a11bf2bab410498e0f036d87839e9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: c3f51eaac27066e4ea61e655a876603b, type: 2}

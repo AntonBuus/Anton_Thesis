@@ -174,11 +174,15 @@ public class EvaluationModuleSteps : MonoBehaviour
                 break;
 
             case 6:
-                _title.text = "Product";
-                _text.text = "The petridish will be located under the HEPA filters in first air. Your task is to place a lid over the product without contaminating it so that the product can be safely transported to the next stage of production.";
+                _title.text = "Exit?";
+                _text.text = "Press the exit button and take off your VR headset.";
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);
+                _dynamicText.gameObject.SetActive(false);
                 _buttonText.text = "Next";
+                _buttonText.gameObject.SetActive(false);
+                _endTutorialButton.SetActive(true);
+
                 // _image_goodPractice.SetActive(false);
                 break;
 
