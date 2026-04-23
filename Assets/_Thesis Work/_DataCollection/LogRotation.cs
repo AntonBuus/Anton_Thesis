@@ -15,7 +15,6 @@ public class LogRotation : MonoBehaviour
     public string sessionName = "Session";
  
     private string csvFilePath;
-    private bool _hasSavedData;
 
     void Awake()
     {
@@ -28,9 +27,9 @@ public class LogRotation : MonoBehaviour
         string timeStamp = System.DateTime.Now.ToString("MMM-dd-HH-mm");
         string baseFileName = $"{sessionName}{gameObject.name}_{timeStamp}";
 
-        string dataFilePath = "C:/GitHub/Anton_Thesis/Assets/_Thesis Work/_DataCollection/LoggedData";
+        // string dataFilePath = "C:/GitHub/Anton_Thesis/Assets/_Thesis Work/_DataCollection/LoggedData";
   
-        csvFilePath = System.IO.Path.Combine(dataFilePath, baseFileName + ".csv");
+        csvFilePath = System.IO.Path.Combine(_dataCollectionManagerScript.SessionFolderPath, baseFileName + ".csv");
     }
 
     void FixedUpdate()
@@ -54,17 +53,14 @@ public class LogRotation : MonoBehaviour
     {
         SaveData();
     }
-
-    // Save when this object is disabled (e.g. scene unload/change).
-    private void OnDisable()
+    
+    private void OnDisable() //on scene end
     {
         SaveData();
     }
 
     public void SaveData()
     {
-        if (_hasSavedData) return;
-        _hasSavedData = true;
         SaveDataToCSV();
     }
 
