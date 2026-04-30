@@ -9,6 +9,8 @@ public class LogRotation : MonoBehaviour
     private List<string> timeStamps = new();
     private List<string> _timeSeconds = new();
     private List<Vector3> rotationData = new();
+    private Vector3 _previousEuler;
+    private Vector3 _unwrappedEuler;
 
     [Header("Session Info")]
     [Tooltip("Name of the session for file naming.")]
@@ -30,6 +32,9 @@ public class LogRotation : MonoBehaviour
         // string dataFilePath = "C:/GitHub/Anton_Thesis/Assets/_Thesis Work/_DataCollection/LoggedData";
   
         csvFilePath = System.IO.Path.Combine(_dataCollectionManagerScript.SessionFolderPath, baseFileName + ".csv");
+
+        _previousEuler = transform.parent.rotation.eulerAngles;
+        _unwrappedEuler = _previousEuler;
     }
 
     void FixedUpdate()
@@ -45,7 +50,16 @@ public class LogRotation : MonoBehaviour
 
         if (_dataCollectionManagerScript._rotationData)
         {
-            rotationData.Add(transform.eulerAngles);
+            Vector3 currentEuler = transform.parent.rotation.eulerAngles;
+            Vector3 deltaEuler = new Vector3(
+                Mathf.DeltaAngle(_previousEuler.x, currentEuler.x),
+                Mathf.DeltaAngle(_previousEuler.y, currentEuler.y),
+                Mathf.DeltaAngle(_previousEuler.z, currentEuler.z)
+            );
+
+            _unwrappedEuler += deltaEuler;
+            _previousEuler = currentEuler;
+            rotationData.Add(_unwrappedEuler);
         }
     }
 

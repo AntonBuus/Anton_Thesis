@@ -19,6 +19,7 @@ public class EvaluationModuleSteps : MonoBehaviour
     [Header("Tracking Contamination")]
     public TextMeshProUGUI _dynamicText; 
     TrackContamination _trackContaminationScript;
+    DataCollectionManager _dataCollectionManagerScript;
 
     // public GameObject _image_goodPractice;
 
@@ -62,6 +63,7 @@ public class EvaluationModuleSteps : MonoBehaviour
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
         _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+        _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
     }
 
     public void Requirement1()
@@ -161,6 +163,7 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _text.text = "Put lids on the petridishes. Don't speak and change your mask if relevant.";
                 _dynamicText.gameObject.SetActive(true);
                 _nextButton.SetActive(false);
+                _dataCollectionManagerScript.LogStartedEvaluationAction();
 
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);

@@ -45,7 +45,7 @@ public class LogPosition : MonoBehaviour
 
         if (_dataCollectionManagerScript._positionData)
         {
-            positionData.Add(transform.position);
+            positionData.Add(transform.parent.position);
         }
     }
 

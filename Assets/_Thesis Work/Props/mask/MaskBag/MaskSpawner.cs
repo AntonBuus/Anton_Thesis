@@ -15,20 +15,52 @@ public class MaskSpawner : MonoBehaviour
         Instantiate(maskPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
-    public void SpawnMaskInHand(Transform handTransform)
+    public GameObject SpawnMaskInHand(Transform handTransform)
     {
-        Instantiate(maskPrefab, handTransform.position, handTransform.rotation, handTransform);
+        GameObject mask = Instantiate(maskPrefab, handTransform.position, handTransform.rotation, handTransform);
         Debug.Log("Mask spawned in hand at position: " + handTransform.position);
-        // return mask;
+        return mask;
     }
-    public void LetGoOfMask(Transform handTransform)
+
+    public void SpawnMaskInWorldSpace(GameObject maskObject, Vector3 position, Quaternion rotation)
     {
-        // Detach the mask from the hand
-        if (handTransform.childCount > 0)
-        {
-            Transform mask = handTransform.GetChild(0);
-            mask.SetParent(null);
-            Debug.Log("Mask released from hand at position: " + mask.position);
-        }
+        maskObject.transform.SetParent(null);
+        maskObject.transform.position = position;
+        maskObject.transform.rotation = rotation;
+        Debug.Log("Mask spawned in world space at position: " + position);
     }
+
+
+    //cleaner version?
+    public Transform cleanspawnPoint;
+
+    private XRSimpleInteractable interactable;
+     private XRBaseInteractable _baseinteractable;
+
+    void Awake()
+    {
+        interactable = GetComponent<XRSimpleInteractable>();
+        interactable.selectEntered.AddListener(OnGrab);
+
+        
+    }
+
+    private void OnGrab(SelectEnterEventArgs args)
+    {
+        // The interactor that grabbed this object
+        var interactor = args.interactorObject;
+
+        // Spawn the real object
+        GameObject spawned = Instantiate(maskPrefab, cleanspawnPoint.position, cleanspawnPoint.rotation);
+
+        // Get its interactable
+        var spawnedInteractable = spawned.GetComponent<XRGrabInteractable>();
+
+        // Force the interactor to grab the new object
+        args.manager.SelectEnter(interactor, spawnedInteractable);
+
+        // Optionally destroy the placeholder
+        // Destroy(gameObject);
+    }
+    
 }

@@ -8,7 +8,7 @@ public class TutorialManager : MonoBehaviour
     private int popUpIndex;
     public GameObject spawner;
 
-    private bool step1done = false;
+    // private bool step1done = false;
 
     void Update()
     {
