@@ -16,6 +16,7 @@ public class MaskBehavior : MonoBehaviour
     SocketTagFunc _socketTagFunc;
 
     TutorialSteps _speechTutorialStepsScript;
+    AudioManager audioManagerScript;
 
     // AudioDetection _audioDetection;
     void Start()
@@ -30,6 +31,8 @@ public class MaskBehavior : MonoBehaviour
         {
             Debug.Log("TutorialComponent not in this scene FYI");
         }
+        audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
+
         // _speechTutorialStepsScript = GameObject.Find("TutorialSteps").GetComponent<TutorialSteps>();
         // _audioDetection = GameObject.Find("Micinput2").GetComponent<AudioDetection>();
     }
@@ -50,34 +53,12 @@ public class MaskBehavior : MonoBehaviour
             {
                 wornMask.transform.GetChild(2).gameObject.SetActive(true);
                 Debug.Log("Bacteria is active");
-                if (_speechTutorialStepsScript != null)
+                if (_speechTutorialStepsScript != null && _speechTutorialStepsScript._successfullyContaminatedMask == false)
                 {
                     _speechTutorialStepsScript._successfullyContaminatedMask = true;
+                    // audioManagerScript.Play("good"); 
                 }
             }
         }
-    }
-
-
-
-    // void OnCollisionEnter(Collision _facemask)
-    // {
-    //     if (_facemask.gameObject.CompareTag("_facemask"))
-    //     {
-    //         Transform[] children = _facemask.gameObject.GetComponentsInChildren<Transform>();
-    //         if (children.Length > 3)
-    //         {
-                
-    //             children[3].gameObject.SetActive(true);
-    //             Debug.Log("Mask is being worn");
-    //         }
-    //     }
-    // }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    
     }
 }

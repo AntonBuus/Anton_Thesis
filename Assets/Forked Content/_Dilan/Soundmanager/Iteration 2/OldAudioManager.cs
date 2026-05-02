@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Inspired by https://youtu.be/QL29aTa7J5Q?si=1EslXKg1KK9CCqgb 
-public class AudioManager : MonoBehaviour
+public class OldAudioManager : MonoBehaviour
 {
-    public static AudioManager Instance;
-    public Sound[] _sounds;
+    public static OldAudioManager Instance;
+    public OldSound[] _sounds;
     public AudioSource audioSource;
 
     public void Awake()
@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
     }
     public void PlaySound(string name, float Volume)
     {
-        Sound s = Array.Find(_sounds, x => x.name == name);
+        OldSound s = Array.Find(_sounds, x => x.name == name);
         if (s == null)
         {
             Debug.Log("Sound not found");

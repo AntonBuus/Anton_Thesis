@@ -22,7 +22,6 @@ public class DataCollectionManager : MonoBehaviour
 
     private void Awake()
     {
-        // If an instance already exists, destroy this one
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -58,15 +57,29 @@ public class DataCollectionManager : MonoBehaviour
 
     private List<string> timeStamps = new();
     private List<string> _timeSeconds = new();
-    private List<int> _startedEvaluation = new();
-    private List<int> _started1 = new();
-    private List<int> _started2 = new();
     private List<float> _userSpoken = new();
 
-    private int _pendingStartedEvaluation;
-    private int _pendingStarted1;
-    private int _pendingStarted2;
+    private List<int> _speechModuleEntered = new();
+    private List<int> _speechModuleParameter = new();
+
+    private List<int> _udfModuleEntered = new();
+    private List<int> _udfModuleParameter = new();
+
+    private List<int> _evaluationEntered = new();
+    private List<int> _evaluationBegun = new();
+   
+   
+
+        
     private float _loudnessLogged;
+    private int _tempEnteredSpeechModule;
+    private int _tempSpeechModuleParameter;
+
+    private int _tempEnteredUDFModule;
+    private int _tempUDFModuleParameter;
+    
+    private int _tempEnteredEvaluation;
+    private int _tempBegunEvaluation;
     // private List<Vector3> positionData = new();
 
     [Header("Session Info")]
@@ -94,17 +107,29 @@ public class DataCollectionManager : MonoBehaviour
         var t = System.TimeSpan.FromSeconds(Time.time);
         timeStamps.Add(t.ToString(@"mm\:ss\,fff")); 
         _timeSeconds.Add(Time.time.ToString("F2")); 
-        _userSpoken.Add(_loudnessLogged > 0 ? _loudnessLogged : 0);
+        _userSpoken.Add(_loudnessLogged);
 
-        _startedEvaluation.Add(_pendingStartedEvaluation > 0 ? 1 : 0);
-        _started1.Add(_pendingStarted1 > 0 ? 1 : 0);
-        _started2.Add(_pendingStarted2 > 0 ? 1 : 0);
+        _speechModuleEntered.Add(_tempEnteredSpeechModule);
+        _speechModuleParameter.Add(_tempSpeechModuleParameter);
+
+        _udfModuleEntered.Add(_tempEnteredUDFModule);
+        _udfModuleParameter.Add(_tempUDFModuleParameter);
+
+        _evaluationEntered.Add(_tempEnteredEvaluation > 0 ? 1 : 0);
+        _evaluationBegun.Add(_tempBegunEvaluation > 0 ? 1 : 0);
+        
+        
 
         // _userSpoken = 0f;
-        _pendingStartedEvaluation = 0;
-        _pendingStarted1 = 0;
-        _pendingStarted2 = 0;
+        
+        _tempEnteredSpeechModule = 0;
+        _tempSpeechModuleParameter = 0;
 
+        _tempEnteredUDFModule = 0;
+        _tempUDFModuleParameter = 0; 
+
+        _tempEnteredEvaluation = 0;
+        _tempBegunEvaluation = 0;
         
     }
 
@@ -112,22 +137,34 @@ public class DataCollectionManager : MonoBehaviour
     public void LogLoudnessAction(float loudness)
     {
         _loudnessLogged = loudness;
+        // Debug.Log($"method called: {loudness}");
 
     }
 
+    
+    public void LogSpeechModuleEntered()
+    {
+        _tempEnteredSpeechModule = 1;
+    }
+    public void LogSpeechParameter()
+    {
+        _tempSpeechModuleParameter = 1;
+    }
+    public void LogUDFModuleEntered()
+    {
+        _tempEnteredUDFModule = 1;
+    }
+    public void LogUDFParameter()
+    {
+        _tempUDFModuleParameter = 1;
+    }
+    public void LogEvaluationModuleEntered()
+    {
+        _tempEnteredEvaluation = 1;
+    }
     public void LogStartedEvaluationAction()
     {
-        _pendingStartedEvaluation = 1;
-    }
-
-    public void LogStarted1Action()
-    {
-        _pendingStarted1 = 1;
-    }
-
-    public void LogStarted2Action()
-    {
-        _pendingStarted2 = 1;
+        _tempBegunEvaluation = 1;
     }
 
     // private void OnApplicationQuit()
@@ -146,12 +183,12 @@ public class DataCollectionManager : MonoBehaviour
     public void SaveDataToCSV()
     {
         var lines = new List<string>();
-        lines.Add("Timestamp;TimeSeconds;UserSpoke;StartedEvaluation;Started1;Started2");
+        lines.Add("Timestamp;TimeSeconds;UserSpoke;SpeechModuleEntered;SpeechModuleParameter;UDFModuleEntered;UDFModuleParameter;EvaluationModuleEntered;EvaluationModuleBegun");
 
         int count = timeStamps.Count;
         for (int i = 0; i < count; i++)
         {
-            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_startedEvaluation[i]};{_started1[i]};{_started2[i]}");
+            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_speechModuleEntered[i]};{_speechModuleParameter[i]};{_udfModuleEntered[i]};{_udfModuleParameter[i]};{_evaluationEntered[i]};{_evaluationBegun[i]};");
         }
 
 

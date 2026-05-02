@@ -22,23 +22,30 @@ public class TutorialStepsUDF : MonoBehaviour
 
     [Header("Tutorial step variables")]
     //Change these
-    private bool _requirement1Met = false;
-    private bool _requirement2Met = false;
-    private bool _requirement3Met = false;
+    public bool _handPutInAirStream = false;
+    public bool _lidPutInAirStream = false;
+    private bool _lidsplaced = false;
 
 
     public GameObject movingCanvas;
     
     public Transform playerHead;
     // public float distanceFromPlayer = 2;
-    MaskBehavior _maskBehaviorScript;
+    // MaskBehavior _maskBehaviorScript;
 
     SceneLoader _sceneLoader;
+    AudioManager _audioManagerScript;
+    [SerializeField] TrackContamination _trackContaminationScript;
 
     void Update()
     {
         movingCanvas.transform.LookAt(new Vector3(playerHead.position.x, movingCanvas.transform.position.y, playerHead.position.z));
         movingCanvas.transform.forward *= -1;
+
+        if (_stepindex == 9)
+        {
+            CheckLidsPlaced();
+        }
     }
     
     public void Start()
@@ -46,32 +53,51 @@ public class TutorialStepsUDF : MonoBehaviour
         _title.text = "Welcome";
         _text.text = "This module will introduce the concept of contamination particle from speech.";
         Debug.Log("stepindex: " + _stepindex);
-        _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
+        // _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
+        _audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
+        //manually assigned in the inspector
+        //_trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
     }
 
-    public void Requirement1()
+    public void PlayerHasPutHandInAirStream()
     {
         // Debug.Log("PlayerHasSpoken Called");
-        if(_stepindex == 4 && !_requirement1Met)
+        if(_stepindex == 5 && !_handPutInAirStream)
         {
-            _requirement1Met = true;
+            _handPutInAirStream = true;
+            _audioManagerScript.Play("good");
             // Debug.Log("Player has spoken correctly");
             //Should i call StepNext here?
-                StepNext();
+            StepNext();
         }
     }
-    public void Requirement2()
+    public void PlayerHasPutLidInAirStream()
     {
         // Debug.Log("PlayerHasGrabbedNewMask Called");
-        if(_stepindex == 8 && !_requirement2Met)
+        if(_stepindex == 6 && !_lidPutInAirStream)
         {
-            _requirement2Met = true;
+            _lidPutInAirStream = true;
+            _audioManagerScript.Play("good");
             // Debug.Log("Player has grabbed new mask correctly");
             //Should i call StepNext here?
-                // StepNext();
+            StepNext();
         }
+    }
+    public void CheckLidsPlaced()
+    {
+        // Debug.Log("PlayerHasGrabbedNewMask Called");
+        if(_stepindex == 9 && !_lidsplaced)
+        {
+            if (_trackContaminationScript._lidsPlacedTotal == _trackContaminationScript._dishesTotalAmount)
+            {   
+                _lidsplaced = true;
+                StepNext();
+                _audioManagerScript.Play("good");
+            }
+        }
+        
     }
     public void StepNext()
     {
@@ -131,7 +157,7 @@ public class TutorialStepsUDF : MonoBehaviour
             Debug.Log("stepindex: " + _stepindex);
             return;
         }
-        if(_stepindex ==5 ) //&& _requirement2Met
+        if(_stepindex ==5 && _handPutInAirStream) //&& _requirement2Met
         {
             _title.text = "Great";
             _text.text = "Now pick up a lid on the counter and do the same. See if you can steer the air by tilting the lid in any direction.";
@@ -139,7 +165,7 @@ public class TutorialStepsUDF : MonoBehaviour
             Debug.Log("stepindex: " + _stepindex);
             return;
         }
-        if(_stepindex ==6)
+        if(_stepindex ==6 && _lidPutInAirStream)
         {
             _title.text = "Product";
             _text.text = "The petridish will be located under the HEPA filters in first air. Your task is to place a lid over the product without contaminating it so that the product can be safely transported to the next stage of production.";
@@ -159,22 +185,23 @@ public class TutorialStepsUDF : MonoBehaviour
             _image_goodPractice.SetActive(true);
             _nextButton.SetActive(true);
             _buttonText.text = "Understood";
+            _products.SetActive(true); // not ideal but will do for now,
             return;
         }
-        if(_stepindex ==8) //&& _hasGrabbedNewMask 
+        if(_stepindex ==8) 
         {
             _title.text = "Exercise";
-            _text.text = "Place the lids on the 3 respective products, it's okay if one of them gets contaminated as this is just training. But you will be judged during the exam later on.";
+            _text.text = "Place the lids on the 3 respective products, it's okay if one of them gets contaminated as this is just training. But you will be judged during the evaluation later on.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
             _image_goodPractice.SetActive(false);
             _buttonText.text = "Next";
-            _products.SetActive(true);
+            
             //button should say: Understood
             // _nextButton.SetActive(false);
             return;
         }
-        if(_stepindex ==9 ) // && _requirement3Met
+        if(_stepindex ==9 && _lidsplaced) 
         {
             _title.text = "Great";
             _text.text = "You now know the basic principles of uni directional flow, and you have practiced how to place a lid on a product without contaminating it.";

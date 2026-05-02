@@ -28,13 +28,13 @@ public class OvenScript : MonoBehaviour
         if (!hasRun && item1place && item2place && item3place)
         {
             hasRun = true;
-            AudioManager.Instance.PlaySound("Oven", 0.5f);
+            OldAudioManager.Instance.PlaySound("Oven", 0.5f);
             ToggleVisibility();
             _clipboardManager.Task4Completed();
         }
         else if (!hasRun && !item1place && !item2place && !item3place)
         {
-            AudioManager.Instance.PlaySound("Fail", 0.5f);
+            OldAudioManager.Instance.PlaySound("Fail", 0.5f);
         }
     }
 

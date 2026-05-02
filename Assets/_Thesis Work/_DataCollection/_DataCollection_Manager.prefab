@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _positionData: 1
   _rotationData: 1
-  _speechData: 0
+  _speechData: 1
   _particleCollisionPositionData: 0
+  baseDataPath: C:/GitHub/Anton_Thesis/Assets/_Thesis Work/_DataCollection/LoggedData
+  sessionName: Session

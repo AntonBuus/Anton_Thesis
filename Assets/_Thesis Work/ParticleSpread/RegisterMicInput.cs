@@ -53,12 +53,10 @@ public class RegisterMicInput : MonoBehaviour
         // Check if audio source exists
         if (audioSource != null)
         {
-            // Output the current volume to debug log
             Debug.Log($"Audio level: {audioSource.volume}");
         }
         else
         {
-            // Warn if audio source is not initialized
             Debug.LogWarning("AudioSource not initialized");
         }
     }

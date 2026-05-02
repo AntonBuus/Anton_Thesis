@@ -29,7 +29,7 @@ public class TutorialSteps : MonoBehaviour
     MaskBehavior _maskBehaviorScript;
 
     SceneLoader _sceneLoader;
-
+    AudioManager audioManagerScript;
     void Update()
     {
         movingCanvas.transform.LookAt(new Vector3(playerHead.position.x, movingCanvas.transform.position.y, playerHead.position.z));
@@ -44,8 +44,10 @@ public class TutorialSteps : MonoBehaviour
         _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
+        audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
     }
 
+   
     public void PlayerHasSpoken()
     {
         // Debug.Log("PlayerHasSpoken Called");
@@ -55,18 +57,30 @@ public class TutorialSteps : MonoBehaviour
             Debug.Log("Player has spoken correctly");
             //Should i call StepNext here?
                 // StepNext();
+            
+            audioManagerScript.Play("good");
         }
     }
     public void PlayerHasGrabbedNewMask()
     {
         // Debug.Log("PlayerHasGrabbedNewMask Called");
+        if(_stepindex == 8 && _hasGrabbedNewMask)
+        {
+            //is activated once they have grabbe the new mask
+            Debug.Log("player has put on the grabbed mask (or grabbed a new one)");
+            //Should i call StepNext here?
+            audioManagerScript.Play("good");
+                // StepNext();
+        }
         if(_stepindex == 8 && !_hasGrabbedNewMask)
         {
             _hasGrabbedNewMask = true;
             Debug.Log("Player has grabbed new mask correctly");
             //Should i call StepNext here?
                 // StepNext();
+            // audioManagerScript.Play("good");
         }
+        
     }
     public void StepNext()
     {

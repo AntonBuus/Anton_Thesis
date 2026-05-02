@@ -42,6 +42,7 @@ public class EvaluationModuleSteps : MonoBehaviour
     MaskBehavior _maskBehaviorScript;
 
     SceneLoader _sceneLoader;
+    AudioManager _audioManagerScript;
 
     void Update()
     {
@@ -64,6 +65,7 @@ public class EvaluationModuleSteps : MonoBehaviour
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
         _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
         _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
+        _audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
     }
 
     public void Requirement1()
@@ -98,6 +100,7 @@ public class EvaluationModuleSteps : MonoBehaviour
             {   
                 _taskCompleted = true;
                 StepNext();
+                _audioManagerScript.Play("good");
             }
         }
         if(_stepindex == 6)
@@ -154,7 +157,6 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _text.text = "Start the evaluation when you are ready.";
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);
-                //Show picture here
                 // _UDF_System.SetActive(true);
                 break;
 
@@ -174,6 +176,7 @@ public class EvaluationModuleSteps : MonoBehaviour
                 _text.text = "You have placed the lids";
                 _stepindex++;
                 _nextButton.SetActive(true); 
+
                 
                 Debug.Log("stepindex: " + _stepindex);
                 break;

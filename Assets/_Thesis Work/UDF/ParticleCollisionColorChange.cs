@@ -20,9 +20,16 @@ public class ParticleCollisionColorChange : MonoBehaviour
     
 
     TrackContamination _trackContaminationScript;
+    TutorialStepsUDF _tutorialStepsUDFScript;
+
     void Start()
     {
         ps = GetComponent<ParticleSystem>();
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "UDF")
+        {
+            Debug.Log("TutorialStepsUDF script found and assigned in ParticleCollisionColorChange.");
+            _tutorialStepsUDFScript = GameObject.Find("TutorialSteps_UDF").GetComponent<TutorialStepsUDF>();
+        }
         // if scenename is "EvaluationModule_Scene", then find the TrackContamination script
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "EvaluationModule")
         {
@@ -91,6 +98,22 @@ public class ParticleCollisionColorChange : MonoBehaviour
                 particles[particleIndex].startColor = Color.yellow;
                 Debug.Log($"Particle hit! Index (ID): {particleIndex} collided with {other.name}");
                 Debug.Log($"Particle Color After: {particles[particleIndex].startColor}");
+                if(other.name == "ColliderUDF_Small" || other.name == "ColliderUDF")
+                {
+                    if (_tutorialStepsUDFScript != null && _tutorialStepsUDFScript._handPutInAirStream == false)
+                    {
+                        _tutorialStepsUDFScript.PlayerHasPutHandInAirStream();
+                    }
+
+                }
+                if(other.tag == "_lid")
+                {
+                    if (_tutorialStepsUDFScript != null && _tutorialStepsUDFScript._lidPutInAirStream == false)
+                    {
+                        _tutorialStepsUDFScript.PlayerHasPutLidInAirStream();
+                    }
+
+                }
                 
             }
             else
@@ -105,7 +128,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product1Contaminated = true;
                         Debug.Log("proudct 1 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;
@@ -115,7 +138,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product2Contaminated = true;
                         Debug.Log("proudct 2 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;
@@ -125,7 +148,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product3Contaminated = true;
                         Debug.Log("proudct 3 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;
@@ -135,7 +158,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product4Contaminated = true;
                         Debug.Log("proudct 4 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;
@@ -145,7 +168,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product5Contaminated = true;
                         Debug.Log("proudct 5 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;
@@ -155,7 +178,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     {
                         product6Contaminated = true;
                         Debug.Log("proudct 6 is contaminated");
-                        other.transform.GetChild(1).GetComponent<Renderer>().material.color = Color.red;
+                        other.transform.GetChild(2).gameObject.SetActive(true);
                         if (_trackContaminationScript != null)
                         {
                             _trackContaminationScript._contaminatedDishesAmount++;

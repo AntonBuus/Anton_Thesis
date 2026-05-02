@@ -52,7 +52,7 @@ public class TranportBetweenPoints : MonoBehaviour
         if (!isMoving && !hasMoved && item1ready && item2ready && item3ready)
         {
             _clipboardManager.Task5Completed();
-            AudioManager.Instance.PlaySound("Sucess", 0.5f);
+            OldAudioManager.Instance.PlaySound("Sucess", 0.5f);
             isMoving = true;
             t = 0.0f;
             hasMoved = true;
@@ -60,7 +60,7 @@ public class TranportBetweenPoints : MonoBehaviour
         }
         else if (!isMoving && !hasMoved && !item1ready && !item2ready && !item3ready)
         {
-            AudioManager.Instance.PlaySound("Fail", 0.5f);
+            OldAudioManager.Instance.PlaySound("Fail", 0.5f);
         }
       
     }
