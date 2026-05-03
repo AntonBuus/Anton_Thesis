@@ -63,10 +63,12 @@ public class DataCollectionManager : MonoBehaviour
     private List<int> _speechModuleParameter = new();
 
     private List<int> _udfModuleEntered = new();
-    private List<int> _udfModuleParameter = new();
+    private List<int> _udfStartedExercise = new();
+    private List<int> _udfFinishedExercise = new();
 
     private List<int> _evaluationEntered = new();
     private List<int> _evaluationBegun = new();
+    private List<int> _evaluationEnded = new();
    
    
 
@@ -76,10 +78,12 @@ public class DataCollectionManager : MonoBehaviour
     private int _tempSpeechModuleParameter;
 
     private int _tempEnteredUDFModule;
-    private int _tempUDFModuleParameter;
-    
+    private int _tempUDFStartedExercise;
+    private int _tempUDFFinishedExercise;
+
     private int _tempEnteredEvaluation;
     private int _tempBegunEvaluation;
+    private int _tempEndedEvaluation;
     // private List<Vector3> positionData = new();
 
     [Header("Session Info")]
@@ -113,10 +117,12 @@ public class DataCollectionManager : MonoBehaviour
         _speechModuleParameter.Add(_tempSpeechModuleParameter);
 
         _udfModuleEntered.Add(_tempEnteredUDFModule);
-        _udfModuleParameter.Add(_tempUDFModuleParameter);
+        _udfStartedExercise.Add(_tempUDFStartedExercise);
+        _udfFinishedExercise.Add(_tempUDFFinishedExercise);
 
         _evaluationEntered.Add(_tempEnteredEvaluation > 0 ? 1 : 0);
         _evaluationBegun.Add(_tempBegunEvaluation > 0 ? 1 : 0);
+        _evaluationEnded.Add(_tempEndedEvaluation > 0 ? 1 : 0);
         
         
 
@@ -126,10 +132,12 @@ public class DataCollectionManager : MonoBehaviour
         _tempSpeechModuleParameter = 0;
 
         _tempEnteredUDFModule = 0;
-        _tempUDFModuleParameter = 0; 
+        _tempUDFStartedExercise = 0;
+        _tempUDFFinishedExercise = 0;
 
         _tempEnteredEvaluation = 0;
         _tempBegunEvaluation = 0;
+        _tempEndedEvaluation = 0;
         
     }
 
@@ -154,9 +162,13 @@ public class DataCollectionManager : MonoBehaviour
     {
         _tempEnteredUDFModule = 1;
     }
-    public void LogUDFParameter()
+    public void LogUDFStartedExercise()
     {
-        _tempUDFModuleParameter = 1;
+        _tempUDFStartedExercise = 1;
+    }
+    public void LogUDFFinishedExercise()
+    {
+        _tempUDFFinishedExercise = 1;
     }
     public void LogEvaluationModuleEntered()
     {
@@ -165,6 +177,10 @@ public class DataCollectionManager : MonoBehaviour
     public void LogStartedEvaluationAction()
     {
         _tempBegunEvaluation = 1;
+    }
+    public void LogEndedEvaluationAction()
+    {
+        _tempEndedEvaluation = 1;
     }
 
     // private void OnApplicationQuit()
@@ -183,12 +199,12 @@ public class DataCollectionManager : MonoBehaviour
     public void SaveDataToCSV()
     {
         var lines = new List<string>();
-        lines.Add("Timestamp;TimeSeconds;UserSpoke;SpeechModuleEntered;SpeechModuleParameter;UDFModuleEntered;UDFModuleParameter;EvaluationModuleEntered;EvaluationModuleBegun");
+        lines.Add("Timestamp;TimeSeconds;UserSpoke;SpeechModuleEntered;SpeechModuleParameter;UDFModuleEntered;UDFModuleStarted;UDFModuleFinished;EvaluationModuleEntered;EvaluationModuleBegun;EvaluationModuleEnded");
 
         int count = timeStamps.Count;
         for (int i = 0; i < count; i++)
         {
-            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_speechModuleEntered[i]};{_speechModuleParameter[i]};{_udfModuleEntered[i]};{_udfModuleParameter[i]};{_evaluationEntered[i]};{_evaluationBegun[i]};");
+            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_speechModuleEntered[i]};{_speechModuleParameter[i]};{_udfModuleEntered[i]};{_udfStartedExercise[i]};{_udfFinishedExercise[i]};{_evaluationEntered[i]};{_evaluationBegun[i]};{_evaluationEnded[i]}");
         }
 
 

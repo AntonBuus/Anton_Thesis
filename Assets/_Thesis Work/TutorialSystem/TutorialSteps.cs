@@ -30,6 +30,8 @@ public class TutorialSteps : MonoBehaviour
 
     SceneLoader _sceneLoader;
     AudioManager audioManagerScript;
+    DataCollectionManager _dataCollectionManagerScript;
+    
     void Update()
     {
         movingCanvas.transform.LookAt(new Vector3(playerHead.position.x, movingCanvas.transform.position.y, playerHead.position.z));
@@ -45,6 +47,10 @@ public class TutorialSteps : MonoBehaviour
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
         audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
+
+        _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
+        _dataCollectionManagerScript.LogSpeechModuleEntered();
+
     }
 
    

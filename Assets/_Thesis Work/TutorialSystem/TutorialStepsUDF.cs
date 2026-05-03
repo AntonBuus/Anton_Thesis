@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.IO;
 
 public class TutorialStepsUDF : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class TutorialStepsUDF : MonoBehaviour
     SceneLoader _sceneLoader;
     AudioManager _audioManagerScript;
     [SerializeField] TrackContamination _trackContaminationScript;
+    DataCollectionManager _dataCollectionManagerScript;
 
     void Update()
     {
@@ -59,6 +61,8 @@ public class TutorialStepsUDF : MonoBehaviour
         _audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
         //manually assigned in the inspector
         //_trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+        _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
+        _dataCollectionManagerScript.LogUDFModuleEntered();
     }
 
     public void PlayerHasPutHandInAirStream()
@@ -90,7 +94,7 @@ public class TutorialStepsUDF : MonoBehaviour
         // Debug.Log("PlayerHasGrabbedNewMask Called");
         if(_stepindex == 9 && !_lidsplaced)
         {
-            if (_trackContaminationScript._lidsPlacedTotal == _trackContaminationScript._dishesTotalAmount)
+            if (_trackContaminationScript._lidsPlacedTotal >= _trackContaminationScript._dishesTotalAmount)
             {   
                 _lidsplaced = true;
                 StepNext();
@@ -99,6 +103,7 @@ public class TutorialStepsUDF : MonoBehaviour
         }
         
     }
+    
     public void StepNext()
     {
         if(_stepindex == -1)
@@ -196,6 +201,8 @@ public class TutorialStepsUDF : MonoBehaviour
             Debug.Log("stepindex: " + _stepindex);
             _image_goodPractice.SetActive(false);
             _buttonText.text = "Next";
+            _dataCollectionManagerScript.LogUDFStartedExercise();
+            
             
             //button should say: Understood
             // _nextButton.SetActive(false);
@@ -210,6 +217,8 @@ public class TutorialStepsUDF : MonoBehaviour
             //button should say: Understood
             _nextButton.SetActive(true);
             _buttonText.text = "Next";
+            _dataCollectionManagerScript.LogUDFFinishedExercise();
+            // SaveUDFtrainingResults();
             return;
         }
         if(_stepindex ==10 )
@@ -241,6 +250,24 @@ public class TutorialStepsUDF : MonoBehaviour
     public void EndTutorial()
     {
         _sceneLoader.LoadDesiredScene("Menu");
+    }
+
+    //Not used anyway
+    public void SaveUDFtrainingResults()
+    {
+        int SuccesCalculation = _trackContaminationScript._dishesTotalAmount-_trackContaminationScript._contaminatedDishesAmount;
+        // write the succes calculation to a txt file
+        string fileName = "UDFTrainingResults.txt";
+        string path = Path.Combine(_dataCollectionManagerScript.SessionFolderPath, fileName);
+        try
+        {
+            File.WriteAllText(path, "UDF training dishes successful: " + SuccesCalculation.ToString()+"/" + _trackContaminationScript._dishesTotalAmount.ToString());
+            Debug.Log("Saved succes calculation to: " + path);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to save succes calculation: " + e.Message);
+        }
     }
 
 }

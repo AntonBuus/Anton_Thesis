@@ -53,7 +53,7 @@ public class EnableAnyGameObejct : MonoBehaviour
     }
     public void ToggleWithLeftYButton()
     {
-        _toggleableObjects[_leftYbuttonValue].gameObject.SetActive(!_toggleableObjects[_leftYbuttonValue].gameObject.activeSelf);
+        // _toggleableObjects[_leftYbuttonValue].gameObject.SetActive(!_toggleableObjects[_leftYbuttonValue].gameObject.activeSelf);
     }
 
 }

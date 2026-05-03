@@ -6017,6 +6017,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 4959229412148324779, guid: bb4f20b8931084740a5312111270d73c, type: 3}
+      propertyPath: _toggleableObjects.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5021807427393955148, guid: bb4f20b8931084740a5312111270d73c, type: 3}
       propertyPath: m_Layer
       value: 9

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Threading.Tasks;
+using System.IO;
 
 public class EvaluationModuleSteps : MonoBehaviour
 {
@@ -64,8 +65,11 @@ public class EvaluationModuleSteps : MonoBehaviour
         _previousButton.SetActive(false);
         _sceneLoader = GameObject.Find("_sceneLoader").GetComponent<SceneLoader>();
         _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
-        _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
+        
         _audioManagerScript = GameObject.Find("_AudioManager").GetComponent<AudioManager>();
+
+        _dataCollectionManagerScript = GameObject.Find("_DataCollection_Manager").GetComponent<DataCollectionManager>();
+        _dataCollectionManagerScript.LogEvaluationModuleEntered();
     }
 
     public void Requirement1()
@@ -111,6 +115,9 @@ public class EvaluationModuleSteps : MonoBehaviour
                 int SuccesCalculation = _trackContaminationScript._dishesTotalAmount-_trackContaminationScript._contaminatedDishesAmount;
                 _dynamicText.text = "Succesfull placements: " + SuccesCalculation + "/" + _trackContaminationScript._dishesTotalAmount;
                 Debug.Log("final results shown");
+                _dataCollectionManagerScript.LogEndedEvaluationAction();
+                SaveFinalResults();
+
             }
 
             
@@ -140,7 +147,7 @@ public class EvaluationModuleSteps : MonoBehaviour
 
             case 1:
                 _title.text = "Recap";
-                _text.text = "Remember, all of this is supposed to be done without speech, and with a non-contaminated mask.";
+                _text.text = "Remember, all of this is supposed to be done without speech, and with a non-contaminated mask.                                                                        Are you wearing one right now?";
                 _stepindex++;
                 Debug.Log("stepindex: " + _stepindex);
                 break;
@@ -213,5 +220,21 @@ public class EvaluationModuleSteps : MonoBehaviour
     public void EndTutorial()
     {
         _sceneLoader.LoadDesiredScene("Menu");
+    }
+    public void SaveFinalResults()
+    {
+        int SuccesCalculation = _trackContaminationScript._dishesTotalAmount-_trackContaminationScript._contaminatedDishesAmount;
+        // write the succes calculation to a txt file
+        string fileName = "EvaluationSuccesResults.txt";
+        string path = Path.Combine(_dataCollectionManagerScript.SessionFolderPath, fileName);
+        try
+        {
+            File.WriteAllText(path, "Evaluation dishes successful: " + SuccesCalculation.ToString()+"/" + _trackContaminationScript._dishesTotalAmount.ToString());
+            Debug.Log("Saved succes calculation to: " + path);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to save succes calculation: " + e.Message);
+        }
     }
 }

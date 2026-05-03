@@ -29,6 +29,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
         {
             Debug.Log("TutorialStepsUDF script found and assigned in ParticleCollisionColorChange.");
             _tutorialStepsUDFScript = GameObject.Find("TutorialSteps_UDF").GetComponent<TutorialStepsUDF>();
+            // _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
         }
         // if scenename is "EvaluationModule_Scene", then find the TrackContamination script
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "EvaluationModule")
@@ -46,6 +47,10 @@ public class ParticleCollisionColorChange : MonoBehaviour
         
     }
 
+    // public void GetTrackContaminationForUDFWhenRelevant()
+    // {
+    //     _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+    // }
     
         
 
@@ -111,6 +116,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
                     if (_tutorialStepsUDFScript != null && _tutorialStepsUDFScript._lidPutInAirStream == false)
                     {
                         _tutorialStepsUDFScript.PlayerHasPutLidInAirStream();
+                        
                     }
 
                 }
