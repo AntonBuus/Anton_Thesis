@@ -53,7 +53,7 @@ public class TutorialStepsUDF : MonoBehaviour
     public void Start()
     {
         _title.text = "Welcome";
-        _text.text = "This module will introduce the concept of contamination particle from speech.";
+        _text.text = "This module will introduce the concept of uni directional flow in cleanrooms.";
         Debug.Log("stepindex: " + _stepindex);
         // _maskBehaviorScript = GameObject.Find("_Snap_mask").GetComponent<MaskBehavior>();
         _previousButton.SetActive(false);
@@ -109,7 +109,7 @@ public class TutorialStepsUDF : MonoBehaviour
         if(_stepindex == -1)
         {
             _title.text = "Welcome";
-            _text.text = "This module will introduce the concept of contamination particle from speech.";
+            _text.text = "This module will introduce the concept of uni directional flow in cleanrooms.";
             _stepindex++;
             Debug.Log("stepindex: " + _stepindex);
 

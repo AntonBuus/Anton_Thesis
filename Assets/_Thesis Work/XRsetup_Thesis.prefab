@@ -5844,7 +5844,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 5523483344653183580}
   _audioDetectionScript: {fileID: 8119995189219736054}
   _loudnessSensibility: 100
-  _threshold: 0.1
+  _threshold: 0.25
   _emissionRate: 20
 --- !u!1 &7469534313881921458
 GameObject:
@@ -11014,7 +11014,7 @@ MonoBehaviour:
   _particleSystem: {fileID: 7599089147935865066}
   _audioDetectionScript: {fileID: 8119995189219736054}
   _loudnessSensibility: 100
-  _threshold: 0.1
+  _threshold: 0.25
   _emissionRate: 20
 --- !u!1001 &248453102422008632
 PrefabInstance:
@@ -12092,23 +12092,19 @@ PrefabInstance:
     - target: {fileID: 202364692, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_SelectAction.m_Reference
       value: 
-      objectReference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 202364692, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_SelectActionValue.m_Reference
       value: 
-      objectReference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 1670256628, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_ModelPrefab
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1670256628, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-      propertyPath: m_SelectAction.m_Reference
-      value: 
-      objectReference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 1670256628, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_SelectActionValue.m_Reference
       value: 
-      objectReference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+      objectReference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 1767192439, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 1023
