@@ -74,14 +74,18 @@ public class MaskBehavior : MonoBehaviour
             return;
         } 
 
+        
         if (isWearingMask)
         {
             _datacollectionManagerScript.LogMaskWorn();
+
+            var wornMask = _socketTagFunc.GetOldestInteractableSelected();
+            if (wornMask.transform.GetChild(2).name == "mask_Contamination" && wornMask.transform.GetChild(2).gameObject.activeSelf == true)
+            {
+                _datacollectionManagerScript.LogMaskContaminated();
+            }
         }
-        var wornMask = _socketTagFunc.GetOldestInteractableSelected();
-        if (wornMask.transform.GetChild(2).name == "mask_Contamination" && wornMask.transform.GetChild(2).gameObject.activeSelf == true)
-        {
-            _datacollectionManagerScript.LogMaskContaminated();
-        }
+
+        
     }
 }
