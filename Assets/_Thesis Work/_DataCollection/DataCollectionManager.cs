@@ -58,6 +58,8 @@ public class DataCollectionManager : MonoBehaviour
     private List<string> timeStamps = new();
     private List<string> _timeSeconds = new();
     private List<float> _userSpoken = new();
+    private List<int> _maskWorn = new();
+    private List<int> _maskContaminated = new();
 
     private List<int> _speechModuleEntered = new();
     private List<int> _speechModuleParameter = new();
@@ -74,6 +76,8 @@ public class DataCollectionManager : MonoBehaviour
 
         
     private float _loudnessLogged;
+    private int _tempMaskWorn;
+    private int _tempMaskContaminated;
     private int _tempEnteredSpeechModule;
     private int _tempSpeechModuleParameter;
 
@@ -112,6 +116,8 @@ public class DataCollectionManager : MonoBehaviour
         timeStamps.Add(t.ToString(@"mm\:ss\,fff")); 
         _timeSeconds.Add(Time.time.ToString("F2")); 
         _userSpoken.Add(_loudnessLogged);
+        _maskWorn.Add(_tempMaskWorn);
+        _maskContaminated.Add(_tempMaskContaminated);
 
         _speechModuleEntered.Add(_tempEnteredSpeechModule);
         _speechModuleParameter.Add(_tempSpeechModuleParameter);
@@ -127,8 +133,10 @@ public class DataCollectionManager : MonoBehaviour
         
 
         // _userSpoken = 0f;
+        _tempMaskWorn = 0;
+        _tempMaskContaminated = 0;
         
-        _tempEnteredSpeechModule = 0;
+        _tempEnteredSpeechModule = 0;   
         _tempSpeechModuleParameter = 0;
 
         _tempEnteredUDFModule = 0;
@@ -147,6 +155,14 @@ public class DataCollectionManager : MonoBehaviour
         _loudnessLogged = loudness;
         // Debug.Log($"method called: {loudness}");
 
+    }
+    public void LogMaskWorn()
+    {
+        _tempMaskWorn = 1;
+    }
+    public void LogMaskContaminated()
+    {
+        _tempMaskContaminated = 1;
     }
 
     
@@ -199,12 +215,12 @@ public class DataCollectionManager : MonoBehaviour
     public void SaveDataToCSV()
     {
         var lines = new List<string>();
-        lines.Add("Timestamp;TimeSeconds;UserSpoke;SpeechModuleEntered;SpeechModuleParameter;UDFModuleEntered;UDFModuleStarted;UDFModuleFinished;EvaluationModuleEntered;EvaluationModuleBegun;EvaluationModuleEnded");
+        lines.Add("Timestamp;TimeSeconds;UserSpoke;MaskWorn;MaskContaminated;SpeechModuleEntered;SpeechModuleParameter;UDFModuleEntered;UDFModuleStarted;UDFModuleFinished;EvaluationModuleEntered;EvaluationModuleBegun;EvaluationModuleEnded");
 
         int count = timeStamps.Count;
         for (int i = 0; i < count; i++)
         {
-            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_speechModuleEntered[i]};{_speechModuleParameter[i]};{_udfModuleEntered[i]};{_udfStartedExercise[i]};{_udfFinishedExercise[i]};{_evaluationEntered[i]};{_evaluationBegun[i]};{_evaluationEnded[i]}");
+            lines.Add($"{timeStamps[i]};{_timeSeconds[i]};{_userSpoken[i]};{_maskWorn[i]};{_maskContaminated[i]};{_speechModuleEntered[i]};{_speechModuleParameter[i]};{_udfModuleEntered[i]};{_udfStartedExercise[i]};{_udfFinishedExercise[i]};{_evaluationEntered[i]};{_evaluationBegun[i]};{_evaluationEnded[i]}");
         }
 
 

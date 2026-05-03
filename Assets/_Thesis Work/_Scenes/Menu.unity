@@ -9043,6 +9043,7 @@ MonoBehaviour:
   _threshold: 0.1
   _maskBehaviorScript: {fileID: 4977736072957992390}
   _speechTutorialStepsScript: {fileID: 0}
+  _dataCollectionManagerScript: {fileID: 0}
 --- !u!1 &1836115728482463439
 GameObject:
   m_ObjectHideFlags: 0
@@ -10015,7 +10016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2516243752346512488
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10749,6 +10750,7 @@ MonoBehaviour:
   _threshold: 0.1
   _maskBehaviorScript: {fileID: 4977736072957992390}
   _speechTutorialStepsScript: {fileID: 0}
+  _dataCollectionManagerScript: {fileID: 0}
 --- !u!4 &3017298096365687194
 Transform:
   m_ObjectHideFlags: 0
@@ -14450,7 +14452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5262798494318044092
 GameObject:
   m_ObjectHideFlags: 0
