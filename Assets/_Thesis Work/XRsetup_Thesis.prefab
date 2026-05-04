@@ -11414,6 +11414,10 @@ PrefabInstance:
       value: PlayerHead
       objectReference: {fileID: 0}
     - target: {fileID: 3981847772640312808, guid: 6ca19c06bf7ea434f9f10ccafa4f1118, type: 3}
+      propertyPath: _threshold
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3981847772640312808, guid: 6ca19c06bf7ea434f9f10ccafa4f1118, type: 3}
       propertyPath: _maskBehaviorScript
       value: 
       objectReference: {fileID: 4977736073267569032}

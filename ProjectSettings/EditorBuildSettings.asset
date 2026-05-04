@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Thesis Work/_Scenes/EvaluationModule.unity
     guid: 4b7c4c995efe1bc4d8c58b8e418b2366
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Thesis Work/_Scenes/Cleanroom.unity
     guid: a66cbf38c1208c5439ed80042d15656f
   m_configObjects:
