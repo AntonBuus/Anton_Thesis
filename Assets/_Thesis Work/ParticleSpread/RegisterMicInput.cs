@@ -20,9 +20,7 @@ public class RegisterMicInput : MonoBehaviour
     // public enum PreferredMic { Oculus, Laptopmic, No_mic }
     // [SerializeField] public PreferredMic preferredMic = PreferredMic.Laptopmic;
     
-    
 
-    // Called when the script instance is being loaded
     void Start()
     {
         // Initialize audio source if not already set
@@ -39,7 +37,6 @@ public class RegisterMicInput : MonoBehaviour
     // Called once per frame
     void Update()
     {
-        // Log registered audio input status during gameplay
         if (Microphone.IsRecording(Microphone.devices[selectedDeviceIndex]))
         {
             Debug.Log($"Recording from: {Microphone.devices[selectedDeviceIndex]}");
@@ -47,7 +44,6 @@ public class RegisterMicInput : MonoBehaviour
         }
     }
 
-    // Logs the current audio source volume level
     void LogAudioLevel()
     {
         // Check if audio source exists
@@ -64,23 +60,18 @@ public class RegisterMicInput : MonoBehaviour
     // Logs all available microphone devices to console
     void LogAvailableDevices()
     {
-        // Check if any microphone devices are available
+
         if (Microphone.devices.Length == 0)
         {
-            // Report error if no devices found
             Debug.LogError("No microphone devices found!");
             return;
         }
-
-        // Begin logging available devices
         Debug.Log("Available microphone devices:");
-        // Iterate through all available microphone devices
         for (int i = 0; i < Microphone.devices.Length; i++)
         {
-            // Output each device name with its index
             Debug.Log($"[{i}] {Microphone.devices[i]}");
         }
-        // Log which device is currently selected
+
         Debug.Log($"Using device: {Microphone.devices[selectedDeviceIndex]}");
     }
 

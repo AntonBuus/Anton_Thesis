@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using Unity.XR.Oculus;
 using UnityEngine;
 
+// Inspired by Valem tutorials https://www.youtube.com/watch?v=dzD0qP8viLw
 public class AudioDetection : MonoBehaviour
 {
     public int _sampleWindow = 64;
@@ -28,11 +29,6 @@ public class AudioDetection : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void MicrophoneToAudioClip()
     {
         // switch (preferredMic)

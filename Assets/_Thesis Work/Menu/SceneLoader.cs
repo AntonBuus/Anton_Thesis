@@ -10,8 +10,6 @@ public class SceneLoader : MonoBehaviour
     public string sceneToLoad;
     
     public float delayBeforeSceneLoad = 2f;
-    // public AudioSource timeTravelAudio;
-    // public ParticleSystem timeTravelEffect;
 
 
     public void LoadDesiredScene(string sceneName)

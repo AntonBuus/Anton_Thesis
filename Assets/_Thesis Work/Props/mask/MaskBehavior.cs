@@ -70,11 +70,9 @@ public class MaskBehavior : MonoBehaviour
     void FixedUpdate() //for logging
     {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Menu")
-    {   
+        {   
             return;
-        } 
-
-        
+        }         
         if (isWearingMask)
         {
             _datacollectionManagerScript.LogMaskWorn();

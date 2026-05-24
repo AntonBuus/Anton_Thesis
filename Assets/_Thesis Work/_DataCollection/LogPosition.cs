@@ -28,7 +28,6 @@ public class LogPosition : MonoBehaviour
         string timeStamp = System.DateTime.Now.ToString("MMM-dd-HH-mm");
         string baseFileName = $"{sessionName}{gameObject.name}_{timeStamp}";
 
-        // Use the session folder from DataCollectionManager
         csvFilePath = System.IO.Path.Combine(_dataCollectionManagerScript.SessionFolderPath, baseFileName + ".csv");
     }
 

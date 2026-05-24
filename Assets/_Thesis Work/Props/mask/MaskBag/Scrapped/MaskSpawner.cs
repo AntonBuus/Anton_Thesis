@@ -47,20 +47,10 @@ public class MaskSpawner : MonoBehaviour
 
     private void OnGrab(SelectEnterEventArgs args)
     {
-        // The interactor that grabbed this object
         var interactor = args.interactorObject;
-
-        // Spawn the real object
         GameObject spawned = Instantiate(maskPrefab, cleanspawnPoint.position, cleanspawnPoint.rotation);
-
-        // Get its interactable
         var spawnedInteractable = spawned.GetComponent<XRGrabInteractable>();
-
-        // Force the interactor to grab the new object
         args.manager.SelectEnter(interactor, spawnedInteractable);
-
-        // Optionally destroy the placeholder
-        // Destroy(gameObject);
     }
     
 }

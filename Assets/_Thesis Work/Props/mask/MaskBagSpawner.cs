@@ -18,13 +18,11 @@ public class MaskBagSpawner : MonoBehaviour
 
     private void OnGrab(SelectEnterEventArgs args)
     {
-        var playerGrabInteractor = args.interactorObject; //we are defining the interactor that grabbed the spawner
+        var playerGrabInteractor = args.interactorObject;
 
         GameObject spawned = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
         
-        XRGrabInteractable grabInteractable = spawned.GetComponent<XRGrabInteractable>(); // get the grab interactable component from the spawned object
-
-        // Force the interactor to grab the spawned object
+        XRGrabInteractable grabInteractable = spawned.GetComponent<XRGrabInteractable>(); 
         args.manager.SelectEnter(playerGrabInteractor, grabInteractable);
     }
 }

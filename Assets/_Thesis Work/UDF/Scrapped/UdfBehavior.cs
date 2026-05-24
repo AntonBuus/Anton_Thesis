@@ -20,23 +20,20 @@ public class UdfBehavior : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        // Guard clause: if the ParticleSystem reference is missing, we cannot read collisions or update particles.
-        // Returning early avoids null-reference errors and unnecessary work.
+
         if (_UDFparticleSystem == null)
         {
             return;
         }
 
-        // Collect collision events generated against the other object.
-        // If there are no events, there is nothing to recolor, so we exit early for performance.
+
         int eventCount = ParticlePhysicsExtensions.GetCollisionEvents(_UDFparticleSystem, other, _collisionEvents);
         if (eventCount == 0)
         {
             return;
         }
 
-        // Read currently alive particles so we can modify their startColor.
-        // Ensure the backing array is large enough; if not, resize and fetch again to avoid truncation.
+
         int particleCount = _UDFparticleSystem.GetParticles(_particles);
         if (_particles.Length < particleCount)
         {
@@ -44,14 +41,11 @@ public class UdfBehavior : MonoBehaviour
             particleCount = _UDFparticleSystem.GetParticles(_particles);
         }
 
-        // Precompute squared collision radius once so distance checks can use sqrMagnitude.
-        // This avoids repeated square-root operations and is faster in tight loops.
+
         float collisionRadiusSqr = _collisionRadius * _collisionRadius;
 
         ParticleSystem.MainModule main = _UDFparticleSystem.main;
 
-        // For each collision point, scan particles and mark those within radius.
-        // We keep their seed so color can persist until each particle naturally dies.
         for (int i = 0; i < eventCount; i++)
         {
             Vector3 collisionPoint = _collisionEvents[i].intersection;
