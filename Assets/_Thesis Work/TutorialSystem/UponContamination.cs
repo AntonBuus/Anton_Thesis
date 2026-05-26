@@ -12,6 +12,7 @@ public class UponContamination : MonoBehaviour
         _trackContaminationScript = GameObject.Find("TrackContamination").GetComponent<TrackContamination>();
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (_productMaterial.color == Color.red)

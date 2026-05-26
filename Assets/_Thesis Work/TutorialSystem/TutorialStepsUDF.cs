@@ -239,6 +239,9 @@ public class TutorialStepsUDF : MonoBehaviour
     {
         if(_stepindex > -1 && _stepindex!=0)
         {
+            // _stepindex--;
+            // _stepindex--;
+
             _stepindex -= 2;
             Debug.Log("Went back to step: " + _stepindex);
             StepNext();

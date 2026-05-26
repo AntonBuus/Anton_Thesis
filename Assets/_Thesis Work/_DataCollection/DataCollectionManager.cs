@@ -17,6 +17,7 @@ public class DataCollectionManager : MonoBehaviour
     
     public string SessionFolderPath { get; private set; }
 
+    // Singleton instance
     public static DataCollectionManager Instance { get; private set; }
 
     private void Awake()
@@ -27,6 +28,7 @@ public class DataCollectionManager : MonoBehaviour
             return;
         }
 
+        // Set this as the singleton instance
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
@@ -35,12 +37,15 @@ public class DataCollectionManager : MonoBehaviour
 
     private void CreateSessionFolder()
     {
-
+        // Create timestamp and scene name
         string timestamp = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
-
+        // string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        
+        // Create session folder path
         string sessionFolderName = $"{timestamp}";
         SessionFolderPath = Path.Combine(baseDataPath, sessionFolderName);
-         
+        
+        // Ensure directory exists
         if (!Directory.Exists(SessionFolderPath))
         {
             Directory.CreateDirectory(SessionFolderPath);
@@ -96,6 +101,7 @@ public class DataCollectionManager : MonoBehaviour
         string timeStamp = System.DateTime.Now.ToString("MMM-dd-HH-mm");
         string baseFileName = $"{sessionName}_PlayerActions_{timeStamp}";
 
+        // Use the session folder from DataCollectionManager
         csvFilePath = System.IO.Path.Combine(SessionFolderPath, baseFileName + ".csv");
     }
 

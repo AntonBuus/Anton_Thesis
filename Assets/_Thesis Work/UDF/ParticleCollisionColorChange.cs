@@ -31,6 +31,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
             _tutorialStepsUDFScript = GameObject.Find("TutorialSteps_UDF").GetComponent<TutorialStepsUDF>();
             // _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
         }
+        // if scenename is "EvaluationModule_Scene", then find the TrackContamination script
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "EvaluationModule")
         {
             _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
@@ -45,6 +46,14 @@ public class ParticleCollisionColorChange : MonoBehaviour
         product6Contaminated = false;
         
     }
+
+    // public void GetTrackContaminationForUDFWhenRelevant()
+    // {
+    //     _trackContaminationScript = GameObject.Find("Product_dishes").GetComponent<TrackContamination>();
+    // }
+    
+        
+
 
     void OnParticleCollision(GameObject other)
     {
@@ -63,6 +72,7 @@ public class ParticleCollisionColorChange : MonoBehaviour
         {
             Vector3 collisionPosition = collisionEvents[i].intersection;
 
+            // Find the closest particle to this collision
             float minDist = float.MaxValue;
             int closestIndex = -1;
 
@@ -191,4 +201,80 @@ public class ParticleCollisionColorChange : MonoBehaviour
         ps.SetParticles(particles, numParticlesAlive);
     }
 
+    // void OnParticleTrigger(GameObject other)
+    // {
+    //     int maxParticles = ps.main.maxParticles;
+
+    //     if (particles == null || particles.Length < maxParticles)
+    //         particles = new ParticleSystem.Particle[maxParticles];
+
+    //     int numParticlesAlive = ps.GetParticles(particles);
+
+    //     List<ParticleCollisionEvent> triggerEvents = new List<ParticleCollisionEvent>();
+    //     int eventCount = ps.GetCollisionEvents(other, triggerEvents);
+    //     collidedParticleIndices.Clear();
+
+    //     for (int i = 0; i < eventCount; i++)
+    //     {
+    //         Vector3 collisionPosition = triggerEvents[i].intersection;
+
+    //         // Find the closest particle to this collision
+    //         float minDist = float.MaxValue;
+    //         int closestIndex = -1;
+
+    //         for (int j = 0; j < numParticlesAlive; j++)
+    //         {
+    //             float distance = Vector3.Distance(particles[j].position, collisionPosition);
+    //             if (distance  < minDist)
+    //             {
+    //                 minDist = distance;
+    //                 closestIndex = j;
+    //             }
+    //         }
+
+    //         if (closestIndex != -1)
+    //         {
+    //             if (!collidedParticleIndices.Contains(closestIndex))
+    //                 collidedParticleIndices.Add(closestIndex);
+    //         }
+    //     }
+
+    //     for (int i = 0; i < collidedParticleIndices.Count; i++)
+    //     {
+    //         if (other.name != "Product")
+    //         {
+    //             continue;
+    //         }
+    //         Debug.Log("Trigger hit! Object: " + other.name);
+    //         int particleIndex = collidedParticleIndices[i];
+    //         // Debug.Log($"Particle Color Before: {particles[particleIndex].startColor}");
+    //         particles[particleIndex].startColor = Color.yellow;
+    //         // Debug.Log($"Particle hit! Index (ID): {particleIndex} collided with {other.name}");
+    //         Debug.Log($"Particle Color After: {particles[particleIndex].startColor}");
+    //     }
+
+    //     ps.SetParticles(particles, numParticlesAlive);
+    // }
+    void OnParticleTrigger()
+    {
+        // int maxParticles = ps.main.maxParticles;
+
+        // if (particles == null || particles.Length < maxParticles)
+        //     particles = new ParticleSystem.Particle[maxParticles];
+
+        // int numParticlesAlive = ps.GetParticles(particles);
+
+        // for (int i = 0; i < numParticlesAlive; i++)
+        // {
+        //     if (particles[i].remainingLifetime > 0)
+        //     {
+        //         Debug.Log($"Particle Color Before: {particles[i].startColor}");
+        //         particles[i].startColor = Color.yellow;
+        //         Debug.Log($"Particle hit! Index (ID): {i} collided with trigger");
+        //         // Debug.Log($"Particle Color After: {particles[i].startColor}");
+        //     }
+        // }
+
+        // ps.SetParticles(particles, numParticlesAlive);
+    }
 }

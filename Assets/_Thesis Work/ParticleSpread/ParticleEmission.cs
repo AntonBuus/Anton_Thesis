@@ -9,7 +9,7 @@ public class ParticleEmission : MonoBehaviour
     public ParticleSystem _particleSystem;
     public AudioDetection _audioDetectionScript;
    
-    public float loudnessSensitivity = 100f;
+    public float _loudnessSensibility = 100f;
     public float _threshold = 0.1f;
     public float _emissionRate = 5f;
 
@@ -24,7 +24,7 @@ public class ParticleEmission : MonoBehaviour
     }
     void Update()
     {
-        float loudness = _audioDetectionScript.GetLoudnessFromMicrophone() * loudnessSensitivity;
+        float loudness = _audioDetectionScript.GetLoudnessFromMicrophone() * _loudnessSensibility;
         if (loudness < _threshold)
         {
             loudness = 0f;
